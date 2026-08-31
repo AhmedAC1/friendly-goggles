@@ -1,0 +1,151 @@
+<html>
+
+<head>
+  <title> Type for ARRAY (math mode) </title>
+  <style>
+    body { background-color: #ffffff }
+  </style>
+</head>
+
+<classes>
+  <style>
+    .mono {
+      font-family: monospace;
+      background-color: rgba(100, 100, 100, 30%);
+    }
+  </style>
+</classes>
+
+<body>
+  <form id="form">
+    <input type="number">
+    <input type="text">
+    <input type="number">
+    <button type="submit"> Add to list </button>
+  </form>
+  <button id="clearall"> Delete all </button>
+  <button id="clearall2"> Delete all permanently </button>
+  <button id="restoreall"> Restore all deleted </button>
+  <br>
+  <list>
+    <input id="check2" type="checkbox">
+    Treat sentence as a code block
+  </list>
+  <br>
+  <script>
+    const form = document.getElementById("form");
+    const items = form.children
+    const check2 = document.getElementById("check2");
+    let readytorestore = [];
+    const restoreall = document.getElementById("restoreall");
+    const upload = document.getElementById("fileupload");
+    
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const text = document.createElement("div");
+      const button = document.createElement("button");
+      const button2 = document.createElement("button");
+      if (items[2].textContent == "+") {
+        let result = String(Number(items[1] + items[3]));
+      } else if (items[3].textContent == "-") {
+        let result = String(Number(items[1] - items[3]));
+      } else if (items[3].textContent == "*") {
+        let result = String(Number(items[1] * items[3]));
+      };
+      if (check2.checked) {
+        text.setAttribute("class", "mono")
+      };
+      text.textContent = String(Number(result) + 45)
+      text.id = "text";
+      document.body.appendChild(text);
+      input.value = "";
+      button.textContent = "Delete ";
+      text.appendChild(button);
+      button.addEventListener("click", () => {
+        readytorestore.push(text.firstChild.textContent);
+        text.remove();
+      });
+      button2.textContent = "Delete permanently ";
+      text.appendChild(button2);
+      button2.addEventListener("click", () => {
+        text.remove();
+      });
+    });
+    restoreall.addEventListener("click", () => {
+      for (const child of readytorestore) {
+        const text = document.createElement("div");
+        const button = document.createElement("button");
+        const button2 = document.createElement("button");
+        let result = child;
+        
+        
+        if (check2.checked) {
+          text.setAttribute("class", "mono");
+        };
+        text.textContent = result;
+        text.id = "text";
+        document.body.appendChild(text);
+        button.textContent = "Delete ";
+        text.appendChild(button);
+        button.addEventListener("click", () => {
+          readytorestore.push(text.firstChild.textContent);
+          text.remove();
+        });
+        button2.textContent = "Delete permanently ";
+        text.appendChild(button2);
+        button2.addEventListener("click", () => {
+          text.remove();
+        });
+      };
+      readytorestore = [];
+    });
+    upload.addEventListener("change", async () => {
+      const file = upload.files[0]
+      if (!file || file.size === 0) { return };
+      const input2 = await file.text();
+      const text = document.createElement("div");
+      const button = document.createElement("button");
+      const button2 = document.createElement("button");
+      let result = input2;
+      
+      if (check.checked) {
+        result += ".";
+      };
+      if (check2.checked) {
+        text.setAttribute("class", "mono");
+      };
+      text.textContent = result;
+      text.id = "text";
+      document.body.appendChild(text);
+      button.textContent = "Delete ";
+      text.appendChild(button);
+      button.addEventListener("click", () => {
+        readytorestore.push(text.firstChild.textContent);
+        text.remove();
+      });
+      button2.textContent = "Delete permanently "
+      text.appendChild(button2)
+      button2.addEventListener("click", () => {
+        text.remove();
+      });
+    });   
+  </script>
+  <script>
+    const button = document.getElementById("clearall");
+    const button2 = document.getElementById("clearall2");
+    
+    button.addEventListener("click", () => {
+      for (const child of document.querySelectorAll("#text")) {
+        readytorestore.push(child.firstChild.textContent);
+        child.remove();
+      };
+    });
+    button2.addEventListener("click", () => {
+      for (const child of document.querySelectorAll("#text")) {
+        child.remove();
+      };
+    });
+  </script>
+</body>
+
+</html>
