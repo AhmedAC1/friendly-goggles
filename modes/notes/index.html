@@ -7,14 +7,13 @@
   </style>
 </head>
 
-<classes>
-  <style>
-    .mono {
-      font-family: monospace;
-      background-color: rgba(100, 100, 100, 30%);
-    }
-  </style>
-</classes>
+<redraggables>
+  <select id="select">
+    <option value=""> Normal </option>
+    <option value="bold"> Bold </option>
+    <option value="random"> Random color </option>
+  </select>
+</redraggables>
 
 <body>
   <form id="form">
@@ -34,15 +33,30 @@
       if (input.value === "") { return };
       const text = document.createElement("div");
       let result = input.value
+      const dropdown = document.getElementById("select").cloneNode(true)
+      const options = ["bold", "random"]
       
-      text.textContent = result
+      text.textContent = result + " ";
       text.className = "note";
       document.body.appendChild(text);
+      text.appendChild(dropdown)
       input.value = "";
+      
+      dropdown.addEventListener("change", () => {
+        if (dropdown.value == options[0]) {
+          text.style.fontWeight = "bold";
+        }
+        if (dropdown.value == options[1]) {
+          text.style.color = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`
+        }
+        if (dropdown.value == "") {
+          text.removeAttribute("style")
+        }
+      });
     });
     search.addEventListener("input", () => {
       for (const child of document.querySelectorAll(".note")) {
-        child.hidden = !child.textContent.toLowerCase().includes(search.value)
+        child.hidden = !child.textContent.toLowerCase().includes(search.value.toLowerCase())
       };
     });
   </script>
