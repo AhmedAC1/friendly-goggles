@@ -47,15 +47,17 @@
       const button2 = document.createElement("button");
       if (items[2].textContent == "+") {
         let result = String(Number(items[1] + items[3]));
-      } else if (items[3].textContent == "-") {
+      } else if (items[2].textContent == "-") {
         let result = String(Number(items[1] - items[3]));
-      } else if (items[3].textContent == "*") {
+      } else if (items[2].textContent == "*") {
+        let result = String(Number(items[1] * items[3]));
+      } else if (items[2].textContent == "/") {
         let result = String(Number(items[1] * items[3]));
       };
       if (check2.checked) {
         text.setAttribute("class", "mono")
       };
-      text.textContent = String(Number(result) + 45)
+      text.textContent = result
       text.id = "text";
       document.body.appendChild(text);
       input.value = "";
@@ -99,36 +101,6 @@
       };
       readytorestore = [];
     });
-    upload.addEventListener("change", async () => {
-      const file = upload.files[0]
-      if (!file || file.size === 0) { return };
-      const input2 = await file.text();
-      const text = document.createElement("div");
-      const button = document.createElement("button");
-      const button2 = document.createElement("button");
-      let result = input2;
-      
-      if (check.checked) {
-        result += ".";
-      };
-      if (check2.checked) {
-        text.setAttribute("class", "mono");
-      };
-      text.textContent = result;
-      text.id = "text";
-      document.body.appendChild(text);
-      button.textContent = "Delete ";
-      text.appendChild(button);
-      button.addEventListener("click", () => {
-        readytorestore.push(text.firstChild.textContent);
-        text.remove();
-      });
-      button2.textContent = "Delete permanently "
-      text.appendChild(button2)
-      button2.addEventListener("click", () => {
-        text.remove();
-      });
-    });   
   </script>
   <script>
     const button = document.getElementById("clearall");
