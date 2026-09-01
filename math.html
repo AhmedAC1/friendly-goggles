@@ -17,7 +17,7 @@
 </classes>
 
 <body>
-  <form id="form">4
+  <form id="form">
     <input type="number">
     <input type="text">
     <input type="number">
@@ -45,14 +45,14 @@
       const text = document.createElement("div");
       const button = document.createElement("button");
       const button2 = document.createElement("button");
-      if (items[2].value == "+") {
-        let result = String(Number(items[1].value + items[3].value));
-      } else if (items[2].value == "-") {
-        let result = String(Number(items[1].value - items[3].value));
-      } else if (items[2].value == "*") {
-        let result = String(Number(items[1].value * items[3].value));
-      } else if (items[2].value == "/") {
-        let result = String(Number(items[1].value / items[3].value));
+      if (items[1].value == "+") {
+        window.result = String(Number(items[0].value) + Number(items[2].value));
+      } else if (items[1].value == "-") {
+        window.result = String(Number(items[0].value) - Number(items[2].value));
+      } else if (items[1].value == "*") {
+        window.result = String(Number(items[0].value) * Number(items[2].value));
+      } else if (items[1].value == "/") {
+        window.result = String(Number(items[0].value) / Number(items[2].value));
       };
       if (check2.checked) {
         text.setAttribute("class", "mono")
@@ -60,7 +60,7 @@
       text.textContent = result
       text.id = "text";
       document.body.appendChild(text);
-      input.value = "";
+      form.reset()
       button.textContent = "Delete ";
       text.appendChild(button);
       button.addEventListener("click", () => {
@@ -79,7 +79,6 @@
         const button = document.createElement("button");
         const button2 = document.createElement("button");
         let result = child;
-        
         
         if (check2.checked) {
           text.setAttribute("class", "mono");
