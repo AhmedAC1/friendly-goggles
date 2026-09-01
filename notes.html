@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <title> Type for ARRAY </title>
+  <style>
+    body { background-color: #ffffff }
+  </style>
+</head>
+
+<classes>
+  <style>
+    .mono {
+      font-family: monospace;
+      background-color: rgba(100, 100, 100, 30%);
+    }
+  </style>
+</classes>
+
+<body>
+  <form id="form">
+    <input type="text" id="input">
+    <button type="submit"> Insert note into list </button>
+  </form>
+  <br>
+  <input type="search">
+  <br>
+  <script>
+    const input = document.getElementById("input");
+    const form = document.getElementById("form");
+    const search = document.querySelector('input[type="search"]')
+    
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (input.value === "") { return };
+      const text = document.createElement("div");
+      let result = input.value
+      
+      text.textContent = result
+      text.className = "note";
+      document.body.appendChild(text);
+      input.value = "";
+    });
+    search.addEventListener("input", () => {
+      for (const child of document.querySelectorAll(".note")) {
+        child.hidden = !child.textContent.toLowerCase().includes(search.value)
+      };
+    });
+  </script>
+</body>
+
+</html>
