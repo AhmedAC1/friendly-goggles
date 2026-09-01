@@ -1,7 +1,12 @@
 # for typing project
+typing:
 main: "https://ahmedac1.github.io/friendly-goggles/typing/"
-modes: {
-  rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/"
+modes:
+  rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/",
   math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
   notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
-}
+
+# for color project
+colors:
+main: "https://ahmedac1.github.io/friendly-goggles/rgbs/",
+modes: null
