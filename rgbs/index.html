@@ -5,7 +5,7 @@
   </style>
 </head>
 <body>
-  <list isa="div">
+  <list>
     <div id="div"> Hello </div>
     <button id="button"> Rename </button>
     <script>
@@ -16,6 +16,7 @@
         const input = document.createElement("form")
         const text = document.createElement("input")
 
+        if (div.querySelector("form")) { return }
         div.appendChild(input)
         input.appendChild(text)
 
@@ -27,25 +28,21 @@
       });
     </script>
   </list>
-  <list id="list" isa="colorslider">
-    <input type="range" min="0" max="255">
-    <input type="range" min="0" max="255">
-    <input type="range" min="0" max="255">
+  <list>
+    <input type="range" min="0" max="255" value="0">
+    <input type="range" min="0" max="255" value="0">
+    <input type="range" min="0" max="255" value="0">
     <script>
       const div = document.getElementById("div")
-      const list = document.getElementById("list")
+      const sliders = document.querySelectorAll('input[type="range"]')
 
-      function changeColor(r, g, b) {
-        div.style.color = `rgb(${r}, ${g}, ${b})`
+      HTMLElement.prototype.changeColor = function changeColor(r, g, b) {
+        this.style.color = `rgb(${r}, ${g}, ${b})`
       }
-      list.children[0].addEventListener("input", () => {
-        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
-      });
-      list.children[1].addEventListener("input", () => {
-        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
-      });
-      list.children[2].addEventListener("input", () => {
-        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
+      sliders.forEach(slider => {
+        slider.addEventListener("input", () => {
+          div.changeColor(sliders[0].value, sliders[1].value, sliders[2].value)
+        });
       });
     </script>
   </list>
