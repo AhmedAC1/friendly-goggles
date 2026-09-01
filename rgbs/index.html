@@ -32,19 +32,19 @@
     <input type="range" min="0" max="255" value="0">
     <input type="range" min="0" max="255" value="0">
     <input type="range" min="0" max="255" value="0">
-    <script>
-      const div = document.getElementById("div")
-      const sliders = document.querySelectorAll('input[type="range"]')
-
-      HTMLElement.prototype.changeColor = function changeColor(r, g, b) {
-        this.style.color = `rgb(${r}, ${g}, ${b})`
-      }
-      sliders.forEach(slider => {
-        slider.addEventListener("input", () => {
-          div.changeColor(sliders[0].value, sliders[1].value, sliders[2].value)
-        });
-      });
-    </script>
   </list>
 </body>
+<script>
+  const div = document.getElementById("div")
+  const sliders = document.querySelectorAll('input[type="range"]')
+
+  HTMLElement.prototype.changeColor = function changeColor(r, g, b) {
+      this.style.color = `rgb(${r}, ${g}, ${b})`
+  }
+  sliders.forEach(slider => {
+    slider.addEventListener("input", () => {
+      div.changeColor(sliders[0].value, sliders[1].value, sliders[2].value)
+    });
+  });
+</script>
 </html>
