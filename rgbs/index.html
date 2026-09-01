@@ -1,29 +1,23 @@
 <html>
+
 <head>
   <style>
     body { background-color: #aaaaaa }
   </style>
 </head>
+
 <body>
-  <list>
-    <span>
-      <div id="div"> Hello </div>
-      <button id="button"> Rename </button>
-    </span>
-    <select id="select">
-      <option value="rgb"> RGB (default) </option>
-      <option value="gradient"> Gradient </option>
-    </select>
+  <list isa="div">
+    <div id="div"> Hello </div>
+    <button id="button"> Rename </button>
     <script>
-      const button = document.getElementById("button")
       const div = document.getElementById("div")
-      const dropdown = document.getElementById("select")
-      
-      function doall() {
+      const button = document.getElementById("button")
+
+      button.addEventListener("click", () => {
         const input = document.createElement("form")
         const text = document.createElement("input")
 
-        if (div.querySelector("form")) { return }
         div.appendChild(input)
         input.appendChild(text)
 
@@ -32,64 +26,30 @@
           div.textContent = text.value
           input.remove()
         });
-      }
-      button.addEventListener("click", doall)
+      });
     </script>
   </list>
-  <list id="list">
-    <input type="range" min="0" max="255" value="0">
-    <input type="range" min="0" max="255" value="0">
-    <input type="range" min="0" max="255" value="0">
-  </list>
-  <list hidden id="yes">
-    <input type="range" min="0" max="255" value="0">
-    <input type="range" min="0" max="255" value="0">
-    <input type="range" min="0" max="255" value="0">
+
+  <list id="list" isa="colorslider">
     <input type="range" min="0" max="255" value="0">
     <input type="range" min="0" max="255" value="0">
     <input type="range" min="0" max="255" value="0">
   </list>
 </body>
-<script>
-  const sliders = document.getElementById("list").children
-  const dropdown2 = document.getElementById("yes")
-  const gradientsliders = dropdown2.children
 
-  HTMLElement.prototype.changeColor = function (r, g, b) {
-    this.style.background = `rgb(${r}, ${g}, ${b})`
+<script>
+  const div = document.getElementById("div")
+  const sliders = document.querySelectorAll('input[type="range"]')
+
+  HTMLElement.prototype.changeColor = function changeColor(r, g, b) {
+    this.style.color = `rgb(${r}, ${g}, ${b})`
   }
-  HTMLElement.prototype.changeGradientColor = function (table) {
-    this.style.background = "linear-gradient(" + table + ")"
-  }
+
   sliders.forEach(slider => {
     slider.addEventListener("input", () => {
-      div.changeColor(
-        sliders[0].value,
-        sliders[1].value,
-        sliders[2].value
-      )
+      div.changeColor(sliders[0].value, sliders[1].value, sliders[2].value)
     });
   });
-  dropdown.addEventListener("change", () => {
-    if (dropdown.value == "rgb") {
-      dropdown2.hidden = true
-      sliders[0].parentElement.hidden = false
-      return
-    }
-    if (dropdown.value == "gradient") {
-      sliders[0].parentElement.hidden = true
-      dropdown2.hidden = false
-      gradientsliders.forEach(slider => {
-      slider.oninput = () => {
-      div.changeGradientColor(
-        [
-          `rgb(${gradientsliders[0].value}, ${gradientsliders[1].value}, ${gradientsliders[2].value})`,
-          `rgb(${gradientsliders[3].value}, ${gradientsliders[4].value}, ${gradientsliders[5].value})`
-       ]
-     )};
-  });
-  }
-  };
-  });
 </script>
+
 </html>
