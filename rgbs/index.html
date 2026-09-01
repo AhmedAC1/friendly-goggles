@@ -1,0 +1,53 @@
+<html>
+<head>
+  <style>
+    body { background-color: #aaaaaa }
+  </style>
+</head>
+<body>
+  <list isa="div">
+    <div id="div"> Hello </div>
+    <button id="button"> Rename </button>
+    <script>
+      const div = document.getElementById("div")
+      const button = document.getElementById("button")
+
+      button.addEventListener("click", () => {
+        const input = document.createElement("form")
+        const text = document.createElement("input")
+
+        div.appendChild(input)
+        input.appendChild(text)
+
+        input.addEventListener("submit", (event) => {
+          event.preventDefault()
+          div.textContent = text.value
+          input.remove()
+        });
+      });
+    </script>
+  </list>
+  <list id="list" isa="colorslider">
+    <input type="range" min="0" max="255">
+    <input type="range" min="0" max="255">
+    <input type="range" min="0" max="255">
+    <script>
+      const div = document.getElementById("div")
+      const list = document.getElementById("list")
+
+      function changeColor(r, g, b) {
+        div.style.color = `rgb(${r}, ${g}, ${b})`
+      }
+      list.children[0].addEventListener("input", () => {
+        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
+      });
+      list.children[1].addEventListener("input", () => {
+        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
+      });
+      list.children[2].addEventListener("input", () => {
+        changeColor(list.children[0].value, list.children[1].value, list.children[2].value)
+      });
+    </script>
+  </list>
+</body>
+</html>
