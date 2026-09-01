@@ -8,7 +8,7 @@
 </head>
 
 <redraggables>
-  <select id="select">
+  <select id="select" hidden>
     <option value=""> Normal </option>
     <option value="bold"> Bold </option>
     <option value="random"> Random color </option>
@@ -37,6 +37,7 @@
       const options = ["bold", "random"]
       
       text.textContent = result + " ";
+      text.removeAttribute("hidden")
       text.className = "note";
       document.body.appendChild(text);
       text.appendChild(dropdown)
