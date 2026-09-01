@@ -61,16 +61,6 @@
   HTMLElement.prototype.changeGradientColor = function (table) {
     this.style.background = "linear-gradient(" + table + ")"
   }
-  gradientsliders.forEach(slider => {
-  slider.addEventListener("input", () => {
-    div.changeGradientColor(
-    [
-      `rgb(${gradientsliders[0].value}, ${gradientsliders[1].value}, ${gradientsliders[2].value})`,
-      `rgb(${gradientsliders[3].value}, ${gradientsliders[4].value}, ${gradientsliders[5].value})`
-    ]
-    )
-  });
-  });
   sliders.forEach(slider => {
     slider.addEventListener("input", () => {
       div.changeColor(
@@ -83,13 +73,23 @@
   dropdown.addEventListener("change", () => {
     if (dropdown.value == "rgb") {
       dropdown2.hidden = true
-      dropdown.hidden = false
+      sliders[0].parentElement.hidden = false
       return
     }
     if (dropdown.value == "gradient") {
-      dropdown.hidden = true
+      sliders[0].parentElement.hidden = true
       dropdown2.hidden = false
-    }
+      gradientsliders.forEach(slider => {
+      slider.oninput = () => {
+      div.changeGradientColor(
+        [
+          `rgb(${gradientsliders[0].value}, ${gradientsliders[1].value}, ${gradientsliders[2].value})`,
+          `rgb(${gradientsliders[3].value}, ${gradientsliders[4].value}, ${gradientsliders[5].value})`
+       ]
+     )};
+  });
+  }
+  };
   });
 </script>
 </html>
