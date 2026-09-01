@@ -17,7 +17,7 @@
 </classes>
 
 <body>
-  <form id="form">
+  <form id="form">4
     <input type="number">
     <input type="text">
     <input type="number">
@@ -45,14 +45,14 @@
       const text = document.createElement("div");
       const button = document.createElement("button");
       const button2 = document.createElement("button");
-      if (items[2].textContent == "+") {
-        let result = String(Number(items[1] + items[3]));
-      } else if (items[2].textContent == "-") {
-        let result = String(Number(items[1] - items[3]));
-      } else if (items[2].textContent == "*") {
-        let result = String(Number(items[1] * items[3]));
-      } else if (items[2].textContent == "/") {
-        let result = String(Number(items[1] * items[3]));
+      if (items[2].value == "+") {
+        let result = String(Number(items[1].value + items[3].value));
+      } else if (items[2].value == "-") {
+        let result = String(Number(items[1].value - items[3].value));
+      } else if (items[2].value == "*") {
+        let result = String(Number(items[1].value * items[3].value));
+      } else if (items[2].value == "/") {
+        let result = String(Number(items[1].value / items[3].value));
       };
       if (check2.checked) {
         text.setAttribute("class", "mono")
