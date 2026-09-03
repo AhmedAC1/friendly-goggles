@@ -1,111 +1,111 @@
 const math = {
-  add(a: number, b: number) {
+  add(a, b) {
     return a + b;
   },
-  sub(a: number, b: number) {
+  sub(a, b) {
     return a - b;
   },
-  mul(a: number, b: number) {
+  mul(a, b) {
     return a * b;
   },
-  div(a: number, b: number) {
+  div(a, b) {
     return a / b;
   },
-  square(x: number) {
+  square(x) {
     return x * x;
   },
-  split(x: number, canHaveFloat: boolean) {
+  split(x, canHaveFloat) {
     if (canHaveFloat) {
       return x / 2;
     } else {
       return Math.floor(x / 2);
     }
   },
-  circle(x: number) {
+  circle(x) {
     return Math.PI * x * x;
   },
-  triangle(base: number, height: number) {
+  triangle(base, height) {
     return 0.5 * base * height;
   },
   pi() {
     return Math.PI;
   },
-  powerOf(a: number, b: number) {
+  powerOf(a, b) {
     return a ** b;
   },
-  sine(x: number) {
+  sine(x) {
     return Math.sin(x);
   },
-  radian(deg: number) {
+  radian(deg) {
     return deg * Math.PI / 180;
   },
-  degree(rad: number) {
+  degree(rad) {
     return rad * 180 / Math.PI;
   },
-  tan(x: number) {
+  tan(x) {
     return Math.tan(x);
   },
-  cosine(x: number) {
+  cosine(x) {
     return Math.cos(x);
   },
-  log(x: number) {
+  log(x) {
     return Math.log(x);
   },
-  log10(x: number) {
+  log10(x) {
     return Math.log10(x);
   },
-  ln(x: number) {
+  ln(x) {
     return Math.log(x);
   },
-  squareroot(x: number) {
+  squareroot(x) {
     return Math.sqrt(x);
   },
   infinite() {
     return Infinity;
   },
-  arcsine(x: number) {
+  arcsine(x) {
     return Math.asin(x);
   },
-  arccosine(x: number) {
+  arccosine(x) {
     return Math.acos(x);
   },
-  arctan(x: number) {
+  arctan(x) {
     return Math.atan(x);
   },
-  isEqualTo(a: number, b: number) {
+  isEqualTo(a, b) {
     return a === b;
   },
-  isNotEqualTo(a: number, b: number) {
+  isNotEqualTo(a, b) {
     return a !== b;
   },
-  isGreaterThan(a: number, b: number) {
+  isGreaterThan(a, b) {
     return a > b;
   },
-  isLessThan(a: number, b: number) {
+  isLessThan(a, b) {
     return a < b;
   },
-  powerOf10(x: number) {
+  powerOf10(x) {
     return 10 ** x;
   },
-  exp(x: number) {
+  exp(x) {
     return Math.exp(x);
   },
-  powerOf2(x: number) {
+  powerOf2(x) {
     return x ** 2;
   },
-  float(a: number, b: number) {
+  float(a, b) {
     return Number(a + "." + b);
   },
-  factorial(x: number) {
+  factorial(x) {
     if (x < 0 || !Number.isInteger(x)) { return NaN; }
     let start = 1;
     for (let i = 2; i <= x; i++) { start *= i }
     return start;
   },
-  fraction(a: number, b: number) {
+  fraction(a, b) {
     return a + "⁄" + b;
   },
-  floor(x: number) {
+  floor(x) {
     return Math.floor(x);
   },
   returnUnicode() {
