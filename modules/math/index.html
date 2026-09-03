@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        background: linear-gradient(#ff0000, #ffffff);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Test :D</div>
+    <div id="div">2^7 / 2⁷: ...</div>
+    <script type="module">
+      import { math } from "./modules/math.js";
+      const div = document.getElementById("div");
+
+      div.textContent = "2^7 / 2⁷: " + math.powerOf(2, 7);
+    </script>
+  </body>
+</html>
