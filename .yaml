@@ -13,7 +13,7 @@ modes: null
 
 # for modules project
 modules:
-main: "https://ahmedac1.github.io/friendly-goggles/modules/
+main: "https://ahmedac1.github.io/friendly-goggles/modules/"
 modes:
   rootdirectory: "main"
-  math: "https://ahmedac1.github.io/friendly-goggles/modules/math/
+  math: "https://ahmedac1.github.io/friendly-goggles/modules/math/"
