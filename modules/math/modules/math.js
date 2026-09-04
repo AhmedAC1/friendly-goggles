@@ -108,6 +108,12 @@ const math = {
   floor(x) {
     return Math.floor(x);
   },
+  percent(x) {
+    return x / 100;
+  },
+  abs(x) {
+    return Math.abs(x);
+  },
   returnUnicode() {
     return {
       "add": "+",
@@ -150,6 +156,8 @@ const math = {
       "factorial": "!",
       "fraction": "⁄",
       "floor": "⌊⌋",
+      "percent": "%",
+      "abs": "||",
       "returnUnicode": null
     }
   }
