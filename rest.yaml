@@ -21,7 +21,9 @@ modules:
 # for repeating project
 repeat:
   main: "https://ahmedac1.github.io/friendly-goggles/repeat/
-  modes: null
+  modes:
+    rootdirectory: null
+    opposite: "https://ahmedac1.github.io/friendly-goggles/repeat/opposite/"
 
 # for me
 me:
