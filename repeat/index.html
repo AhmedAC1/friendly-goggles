@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Repeat a text</title>
+    <style>
+      body {
+        background-color: rgb(20, 20, 20);
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text">
+      <input type="text">
+      <br>
+      <input type="submit" value="Repeat text">
+    </form>
+    <div id="div"></div>
+    <script>
+      const form = document.getElementById("form");
+      const input = form.children[0];
+      const input2 = form.children[1];
+      const div = document.getElementById("div");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault()
+        
+        if (input.value === "") { return; }
+
+        div.textContent = input2.value.repeat(input.value.length);
+        await new Promise(clock => setTimeout(clock, 1000));
+      });
+    </script>
+  </body>
+</html>
