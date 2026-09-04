@@ -22,3 +22,7 @@ modules:
 repeat:
   main: "https://ahmedac1.github.io/friendly-goggles/repeat/
   modes: null
+
+# for me
+me:
+  main: "https://ahmedac1.github.io/friendly-goggles/rest.yaml/"
