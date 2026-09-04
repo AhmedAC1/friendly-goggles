@@ -1,19 +1,24 @@
 # for typing project
 typing:
-main: "https://ahmedac1.github.io/friendly-goggles/typing/"
-modes:
-  rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/",
-  math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
-  notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
+  main: "https://ahmedac1.github.io/friendly-goggles/typing/"
+  modes:
+    rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/",
+    math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
+    notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
 
 # for color project
 colors:
-main: "https://ahmedac1.github.io/friendly-goggles/rgbs/"
-modes: null
+  main: "https://ahmedac1.github.io/friendly-goggles/rgbs/"
+  modes: null
 
 # for modules project
 modules:
-main: "https://ahmedac1.github.io/friendly-goggles/modules/"
-modes:
-  rootdirectory: "main"
-  math: "https://ahmedac1.github.io/friendly-goggles/modules/math/"
+  main: "https://ahmedac1.github.io/friendly-goggles/modules/"
+  modes:
+    rootdirectory: "main"
+    math: "https://ahmedac1.github.io/friendly-goggles/modules/math/"
+
+# for repeating project
+repeat:
+  main: "https://ahmedac1.github.io/friendly-goggles/repeat/
+  modes: null
