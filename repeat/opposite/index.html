@@ -27,7 +27,7 @@
         
         if (input.value === "") { return; }
 
-        div.textContent = input.value.repeat(input2.value.length);
+        div.textContent = input.value.repeat(input2.value);
         await new Promise(clock => setTimeout(clock, 1000));
       });
     </script>
