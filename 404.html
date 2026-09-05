@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-color: rgb(30, 30, 30);
+        font-family: sans-serif;
+        color: white;
+      }
+    </style>
+    <title>Oops! :(</title>
+  </head>
+  <body>
+    <h1>Oh wait, sorry!</h1>
+    <p>I tried to find a page with that little thingy page but it turns out that it doesn't exist.</p>
+    <button id="yes">What about taking me somewhere random?</button> <!-- boo -->
+    <script>
+      const button = document.getElementById("yes")
+
+      const randomsyayy = [
+        "https://ahmedac1.github.io/friendly-goggles/typing/",
+        "https://ahmedac1.github.io/friendly-goggles/robux/convert/",
+        "https://ahmedac1.github.io/friendly-goggles/modules/math/",
+        "https://ahmedac1.github.io/friendly-goggles/repeat/",
+        "https://ahmedac1.github.io/friendly-goggles/rgbs/"
+      ];
+
+      button.addEventListener("click", () => {
+        window.location.href = randomsyayy[Math.floor(Math.random() * randomsyayy.length)];
+      });
+    </script>
+  </body>
+</html>
