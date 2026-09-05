@@ -2,7 +2,7 @@
 typing:
   main: "https://ahmedac1.github.io/friendly-goggles/typing/"
   modes:
-    rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/",
+    rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/"
     math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
     notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
 
@@ -20,7 +20,7 @@ modules:
 
 # for repeating project
 repeat:
-  main: "https://ahmedac1.github.io/friendly-goggles/repeat/
+  main: "https://ahmedac1.github.io/friendly-goggles/repeat/"
   modes:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/repeat/opposite/"
