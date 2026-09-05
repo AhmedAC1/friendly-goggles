@@ -25,6 +25,13 @@ repeat:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/repeat/opposite/"
 
+# for robux convert project
+robux:
+  main: "https://ahmedac1.github.io/friendly-goggles/robux/converter/"
+  modes:
+    rootdirectory: null
+    opposite: "https://ahmedac1.github.io/friendly-goggles/robux/converter-opposite/"
+
 # for me
 me:
   main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml/"
