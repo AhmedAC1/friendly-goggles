@@ -114,6 +114,39 @@ const math = {
   abs(x) {
     return Math.abs(x);
   },
+  sum(a, b) {
+    let result = 0;
+    if (typeof c !== "undefined") {
+      console.warn("Sorry this is not an JS error this is from the math module im just saying that an existing variable called 'c' already exists so because of this i cannot replace it :(");
+      return;
+    }
+
+    for (let i = a; i <= b; i++) {
+      result += i;
+    }
+    c = result;
+    return c;
+  },
+  negative(x) {
+    return -x
+  },
+  vector(a, b, c, env) {
+    switch (env) {
+      case "2d":
+        return {
+          "x": a,
+          "y": b
+        };
+      case "3d":
+        return {
+          "x": a,
+          "y": b,
+          "z": c
+        };
+      default:
+        console.warn("Sorry this is not an JS error this is from the math module im just saying that there's not a valid vector called " + env + " so please enter 2d or 3d thank you :DDD");
+    }
+  },
   returnUnicode() {
     return {
       "add": "+",
@@ -158,8 +191,11 @@ const math = {
       "floor": "⌊⌋",
       "percent": "%",
       "abs": "||",
+      "sum": "∑",
+      "negative": "-",
+      "vector": "𝐯",
       "returnUnicode": null
-    }
+    };
   }
 };
 
