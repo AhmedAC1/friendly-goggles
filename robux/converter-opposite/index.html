@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Convert robux to USD</title>
+    <style>
+      body {
+        background-color: #aaaaaa;
+        font-family: sans-serif;
+      }
+    </style> <!-- boo -->
+  </head>
+  <body>
+    <h1>Convert robux to USD</h1>
+    <form>
+      <input type="number">
+      <input type="submit">
+    </form>
+    <div>💵 Estimated robux: 0</div>
+    <script>
+      const form = document.querySelector("form");
+      const div = document.querySelector("div");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        div.textContent = "💵 Estimated robux: " + String(Number(form.children[0].value) * 80);
+      });
+    </script>
+  </body>
+</html>
