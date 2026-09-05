@@ -27,7 +27,7 @@ repeat:
 
 # for robux convert project
 robux:
-  main: "https://ahmedac1.github.io/friendly-goggles/robux/"
+  main: "https://ahmedac1.github.io/friendly-goggles/robux/converter/"
   modes:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/robux/converter-opposite/"
