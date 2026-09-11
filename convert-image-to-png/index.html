@@ -26,11 +26,6 @@
                 border-radius: 5px;
                 cursor: pointer;
             }
-            span {
-                display: inline-flex;
-                align-items: center;
-                gap: 2px;
-            }
             a {
                 display: none;
                 text-decoration: underline;
@@ -40,10 +35,9 @@
         </style>
     </head>
     <body>
-        <span>
-            <input type="file" id="file">
-            <button id="button">Convert</button>
-        </span>
+        <input type="file" accept="image/*" id="file">
+        <button id="button">Convert</button>
+        <br>
         <a id="download">Download converted image here</a>
         <script>
             const input = document.getElementById("file");
@@ -82,7 +76,7 @@
                 const url = canvas.toDataURL("image/png", 0.92);
                 download.href = url;
                 download.download = `${window.file.name}-convertedPng.png`;
-                download.style.display = "inline-block";
+                download.style.display = "block";
             })
         </script>
     </body>
