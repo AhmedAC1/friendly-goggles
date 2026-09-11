@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Convert image to PNG</title>
+        <style>
+            input {
+                background: linear-gradient(to right, rgb(255, 0, 0), rgb(255, 255, 0));
+                border: 1px solid #000000;
+                border-radius: 5px;
+                font-family: Serif;
+            }
+            input::file-selector-button {
+                background-color: #aaaaaa;
+                color: #ffffff;
+                border: 1px solid #000000;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: Serif;
+            }
+            input::file-selector-button:hover {
+                opacity: 50%;
+                font-family: Sans-Serif;
+            }
+            button {
+                background: linear-gradient(to right, rgb(0, 128, 0), rgb(0, 255, 0));
+                border: 1px solid #000000;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            span {
+                display: inline-flex;
+                align-items: center;
+                gap: 2px;
+            }
+            a {
+                display: none;
+                text-decoration: underline;
+                text-decoration-color: rgb(0, 200, 200);
+                color: rgb(0, 200, 200);
+            }
+        </style>
+    </head>
+    <body>
+        <span>
+            <input type="file" id="file">
+            <button id="button">Convert</button>
+        </span>
+        <a id="download">Download converted image here</a>
+        <script>
+            const input = document.getElementById("file");
+            const convert = document.getElementById("button");
+            const download = document.getElementById("download");
+            
+            input.addEventListener("change", (event) => {
+                if (!input.files.length) {
+                    window.file = null;
+                    window.thisimage = null;
+                    download.style.display = "none";
+                    throw new Error("No file selected! :(");
+                }
+                
+                window.file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    window.thisimage = new Image();
+                    window.thisimage.src = event.target.result;
+                }
+                reader.readAsDataURL(window.file);
+            });
+            convert.addEventListener("click", () => {
+                if (!window.thisimage) {
+                    alert("Pleaseeeee choose an image firsstttttt :(((((");
+                    return;
+                }
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+                
+                canvas.width = window.thisimage.width;
+                canvas.height = window.thisimage.height;
+                
+                context.drawImage(window.thisimage, 0, 0);
+                
+                const url = canvas.toDataURL("image/png", 0.92);
+                download.href = url;
+                download.download = `${window.file.name}-convertedPng.png`;
+                download.style.display = "inline-block";
+            })
+        </script>
+    </body>
+</html>
