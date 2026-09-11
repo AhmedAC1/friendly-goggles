@@ -32,6 +32,12 @@ robux:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/robux/converter-opposite/"
 
+# for convert image to png
+convertionsimagepng:
+  main: "https://ahnedac1.github.io/friendly-goggles/convert-image-to-png"
+  modes:
+    rootdirectory: null
+
 # for me
 me:
-  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml/"
+  main: "https://github.com/ahmedac1/friendly-goggles/rest.html/"
