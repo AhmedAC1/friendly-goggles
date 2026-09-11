@@ -75,7 +75,7 @@
                 
                 const url = canvas.toDataURL("image/png", 0.92);
                 download.href = url;
-                download.download = `${window.file.name}-convertedPng.png`;
+                download.download = `${window.file.name.replace("." + window.file.name.split(".").pop(), "")}-converted-from-${window.file.name.split(".").pop()}-to-Png.png`;
                 download.style.display = "block";
             })
         </script>
