@@ -5,11 +5,13 @@ typing:
     rootdirectory: "https://ahmedac1.github.io/friendly-goggles/typing/modes/"
     math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
     notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
+  mainIs404: no
 
 # for color project
 colors:
   main: "https://ahmedac1.github.io/friendly-goggles/rgbs/"
   modes: null
+  mainIs404: no
 
 # for modules project
 modules:
@@ -17,6 +19,7 @@ modules:
   modes:
     rootdirectory: "main"
     math: "https://ahmedac1.github.io/friendly-goggles/modules/math/"
+  mainIs404: yes
 
 # for repeating project
 repeat:
@@ -24,21 +27,31 @@ repeat:
   modes:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/repeat/opposite/"
+  mainIs404: no
 
 # for robux convert project
 robux:
-  main: "https://ahmedac1.github.io/friendly-goggles/robux/converter/"
+  main: "https://ahmedac1.github.io/friendly-goggles/robux/"
   modes:
     rootdirectory: null
+    converter: "https://ahmedac1.github.io/friendly-goggles/robux/converter/"
     opposite: "https://ahmedac1.github.io/friendly-goggles/robux/converter-opposite/"
+  mainIs404: yes
 
 # for convert image to png
 convertionsimagepng:
   main: "https://ahmedac1.github.io/friendly-goggles/convert-image-to-png/"
-  modes:
-    rootdirectory: null
+  modes: null
+  mainIs404: no
+
+# for bootalking
+bootalking:
+  main: "https://ahmedac1.github.io/friendly-goggles/boo-talking/"
+  modes: null
+  pages:
+    av0: "https://ahmedac1.github.io/friendly-goggles/boo-talking/AlternateVr0/"
+  mainIs404: yes
 
 # for me
 me:
-  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml/"
-  main2: "https://ahmedac1.github.io/friendly-goggles/rest.html"
+  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml
