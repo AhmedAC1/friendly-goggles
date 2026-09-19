@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>25pX</title>
+    </head>
+    <body style="background: linear-gradient(to right, #323232, #000000); color: #aaaaaa; padding: 25px;">
+        <h1 style="color: #1a3a5a;">Are you there?</h1>
+        <div style="font-size: 18px;" id="date">Wait for date...</div>
+        <script type="module">
+            const date0 = document.getElementById("date");
+            
+            setInterval(function() {
+                date0.textContent = new Date().toUTCString();
+            }, 1000);
+        </script>
+    </body>
+</html>
