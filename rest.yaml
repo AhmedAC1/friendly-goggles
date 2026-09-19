@@ -52,6 +52,27 @@ bootalking:
     av0: "https://ahmedac1.github.io/friendly-goggles/boo-talking/AlternateVr0/"
   mainIs404: yes
 
+# for are you there
+areyouthere:
+  main: "https://ahmedac1.github.io/friendly-goggles/are-you-there/"
+  modes: null
+  pages: null
+  mainIs404: no
+
+# for calculator
+calculator:
+  main: "https://ahmedac1.github.io/friendly-goggles/calculator/"
+  modes: null
+  pages: null
+  mainIs404: no
+
+# for ClockShow
+clockshow:
+  main: "https://ahmedac1.github.io/friendly-goggles/ClockShow/"
+  modes: null
+  pages: null
+  mainIs404: no
+
 # for me
 me:
-  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml
+  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml"
