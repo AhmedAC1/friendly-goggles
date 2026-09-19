@@ -81,7 +81,11 @@
         };
         
         setInterval(function() {
-            result.textContent = eval(typed.textContent);
+            try {
+              result.textContent = eval(typed.textContent);
+            } catch (error) {
+              result.textContent = "";
+            };
         }, 0);
         
         clear.onclick = (event) => {
