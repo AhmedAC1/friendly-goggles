@@ -24,6 +24,7 @@
   <button id="clearall"> Delete all </button>
   <button id="clearall2"> Delete all permanently </button>
   <button id="restoreall"> Restore all deleted </button>
+  <button id="reverseall"> Reverse all </button>
   <input id="fileupload" type="file" accept=".txt">
   <br>
   <list>
@@ -43,6 +44,7 @@
     let readytorestore = [];
     const restoreall = document.getElementById("restoreall");
     const upload = document.getElementById("fileupload");
+    const reverseall = document.getElementById("reverseall");
     
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -131,7 +133,13 @@
       button2.addEventListener("click", () => {
         text.remove();
       });
-    });   
+    });
+    reverseall.addEventListener("click", () => {
+      for (let i = document.querySelectorAll("#text").length - 1; i >= 0; i--) {
+        const child = document.querySelectorAll("#text")[i];
+        document.body.appendChild(child);
+      }
+    });
   </script>
   <script>
     const button = document.getElementById("clearall");
