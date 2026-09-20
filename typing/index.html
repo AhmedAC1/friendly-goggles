@@ -108,7 +108,8 @@
       const file = upload.files[0]
       if (!file || file.size === 0) { return };
       const input2 = await file.text();
-      const text = document.createElement("div");
+      const text = document.createElement("pre"); // i changed it to pre because i noticed when uploading
+      // files with line breaks they just got replaced with a tab that does not happen with an HTMLPreElement
       const button = document.createElement("button");
       const button2 = document.createElement("button");
       let result = input2;
