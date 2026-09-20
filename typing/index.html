@@ -3,7 +3,8 @@
 <head>
   <title> Type for ARRAY </title>
   <style>
-    body { background-color: #ffffff }
+    body { background-color: #fff; }
+    input[type=file] { color: transparent; }
   </style>
 </head>
 
@@ -83,7 +84,6 @@
         const button2 = document.createElement("button");
         let result = child;
         
-        
         if (check2.checked) {
           text.setAttribute("class", "mono");
         };
@@ -107,14 +107,17 @@
     upload.addEventListener("change", async () => {
       const file = upload.files[0]
       if (!file || file.size === 0) { return };
-      const input2 = await file.text();
       let text;
-      if (file.size >= 10 ** 6) {
+      if (file.size >= 10 ** 9 * 3) {
+        text = undefined;
+        alert("You uploaded a file ≥3 GB!");
+        return;
+      } else if (file.size >= 10 ** 6) {
         text = document.createElement("div");
       } else {
         text = document.createElement("pre");
-      } // 1 MB = 1 million / 10^6 so if a file is 1 MB it will not have any whitespaces
-      // added those safety checks incase someone makes the whole page zoom out so much
+      }
+      const input2 = await file.text();
       const button = document.createElement("button");
       const button2 = document.createElement("button");
       let result = input2;
