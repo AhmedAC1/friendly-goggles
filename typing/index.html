@@ -26,6 +26,7 @@
   <button id="clearall2"> Delete all permanently </button>
   <button id="restoreall"> Restore all deleted </button>
   <button id="reverseall"> Reverse all </button>
+  <button id="dupl"> Duplicate all </button>
   <input id="fileupload" type="file" accept="text/*">
   <br>
   <list>
@@ -46,6 +47,7 @@
     const restoreall = document.getElementById("restoreall");
     const upload = document.getElementById("fileupload");
     const reverseall = document.getElementById("reverseall");
+    const dupl = document.getElementById("dupl");
     
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -147,6 +149,28 @@
       for (let i = document.querySelectorAll("#text").length - 1; i >= 0; i--) {
         const child = document.querySelectorAll("#text")[i];
         document.body.appendChild(child);
+      }
+    });
+    dupl.addEventListener("click", () => {
+      for (const child of document.querySelectorAll("#text")) {
+        const cDupl = child.cloneNode(true);
+        const button = cDupl.querySelectorAll("button")[0];
+        const button2 = cDupl.querySelectorAll("button")[1];
+        
+        if (check2.checked) {
+          cDupl.setAttribute("class", "mono")
+        }
+        cDupl.id = "text";
+        document.body.appendChild(cDupl);
+        button.textContent = "Delete ";
+        button.addEventListener("click", () => {
+          readytorestore.push(cDupl.firstChild.textContent);
+          cDupl.remove();
+        });
+        button2.textContent = "Delete permanently ";
+        button2.addEventListener("click", () => {
+          cDupl.remove();
+        });
       }
     });
   </script>
