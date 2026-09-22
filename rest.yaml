@@ -42,6 +42,8 @@ robux:
 convertionsimagepng:
   main: "https://ahmedac1.github.io/friendly-goggles/convert-image-to-png/"
   modes: null
+  pages: null
+  rewritten: no
   mainIs404: no
 
 # for bootalking
@@ -50,6 +52,7 @@ bootalking:
   modes: null
   pages:
     av0: "https://ahmedac1.github.io/friendly-goggles/boo-talking/AlternateVr0/"
+  rewritten: no
   mainIs404: yes
 
 # for are you there
@@ -57,6 +60,7 @@ areyouthere:
   main: "https://ahmedac1.github.io/friendly-goggles/are-you-there/"
   modes: null
   pages: null
+  rewritten: no
   mainIs404: no
 
 # for calculator
@@ -64,6 +68,8 @@ calculator:
   main: "https://ahmedac1.github.io/friendly-goggles/calculator/"
   modes: null
   pages: null
+  rewritten: yes
+  rewrittenUrl: "https://ahmedac1.github.io/friendly-goggles/calculator/rewritten/"
   mainIs404: no
 
 # for ClockShow
@@ -71,6 +77,7 @@ clockshow:
   main: "https://ahmedac1.github.io/friendly-goggles/ClockShow/"
   modes: null
   pages: null
+  rewritten: no
   mainIs404: no
 
 # for me
