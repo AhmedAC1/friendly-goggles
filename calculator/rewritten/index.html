@@ -1,91 +1,127 @@
-<html>  
-    <head>  
-        <style>  
-            button {  
-                background: rgb(190, 190, 190);  
-                border: 3px solid #aaa;  
-                border-radius: 4px;  
-            }  
-            .danger {  
-                background-color: rgb(190, 0, 0);  
-                color: #fff;  
-                border: 3px solid #aa0000;  
-            }  
-        </style>  
-    </head>  
-    <body style="background: #000; color: #ffffff; font-family: sans-serif;">  
-        <div style="font-size: 14px; color: #aaa" id="typed"></div>  
-        <div style="font-size: 32px; font-weight: bold;" id="result"></div>  
-        <span id="signs">  
-            <button>+</button>  
-            <button>-</button>  
-            <button>*</button>  
-            <button>/</button>  
-            <button>**</button>  
-        </span>  
-        <br><br>  
-        <span id="keyboard">  
-            <button>1</button>  
-            <button>2</button>  
-            <button>3</button>  
-            <br>  
-            <button>4</button>  
-            <button>5</button>  
-            <button>6</button>  
-            <br>  
-            <button>7</button>  
-            <button>8</button>  
-            <button>9</button>  
-            <br>  
-            <button style="padding: 0px 34.5px;">0</button>  
-        </span>  
-        <br><br>  
-        <button id="backspace" class="danger">⌫</button>  
-        <button id="clear" class="danger">C</button>  
-        <br><br>  
-        <button style="font-size: 22px; color: #fff;" id="copy">Copy all</button>  
-        <script>  
-            const keyboardKeys = document.getElementById("keyboard").children;  
-            const keyboardSigns = document.getElementById("signs").children;  
-            const result = document.getElementById("result");  
-            const typed = document.getElementById("typed");  
-            const backspace = document.getElementById("backspace");  
-            const c = document.getElementById("clear");  
-            const copy = document.getElementById("copy");  for (const child of keyboardKeys) {  
-            child.onclick = (event) => {  
-                typed.textContent += child.textContent;  
-            }  
-        };  
-          
-        for (const child of keyboardSigns) {  
-            child.onclick = (event) => {  
-                typed.textContent += child.textContent;  
-            }  
-        }  
-          
-        backspace.onclick = (event) => {  
-            typed.textContent = typed.textContent.slice(0, -1);  
-        };  
-          
-        c.onclick = (event) => {  
-            typed.textContent = "";  
-            result.textContent = "";  
-        };  
-          
-        copy.onclick = (event) => {  
-            navigator.clipboard.writeText("Typed: " + typed.textContent + "\nResult: " + result.textContent);  
-        };  
-          
-        setInterval(function() {  
-            try {  
-                result.textContent = eval(typed.textContent);  
-                result.style = "color: #fff;";  
-            } catch (err) {  
-                result.textContent = "Error";  
-                result.style = "color: #ff0000;";  
-            }  
-        }, 0)  
-    </script>  
-</body>
-
-  </html>
+<html>
+    <head>
+        <style>
+            button {
+                background: rgb(190, 190, 190);
+                border: 3px solid #aaa;
+                border-radius: 4px;
+            }
+            .danger {
+                background-color: rgb(190, 0, 0);
+                color: #fff;
+                border: 3px solid #aa0000;
+            }
+        </style>
+    </head>
+    <body style="background: #000; color: #ffffff; font-family: sans-serif;">
+        <details id="history">
+            <summary>History</summary>
+            <button>Clear history</button>
+        </details>
+        <br>
+        <div style="font-size: 14px; color: #aaa" id="typed"></div>
+        <div style="font-size: 32px; font-weight: bold;" id="result"></div>
+        <span id="signs">
+            <button>+</button>
+            <button>-</button>
+            <button>*</button>
+            <button>/</button>
+            <button>**</button>
+        </span>
+        <br><br>
+        <span id="keyboard">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <br>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <br>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <br>
+            <button style="padding: 0px 34.5px;">0</button>
+        </span>
+        <br><br>
+        <button id="backspace" class="danger">⌫</button>
+        <button id="clear" class="danger">C</button>
+        <button id="memorystore">MS</button>
+        <br><br>
+        <button style="font-size: 22px; color: #fff;" id="copy">Copy all</button>
+        <script>
+            const keyboardKeys = document.getElementById("keyboard").children;
+            const keyboardSigns = document.getElementById("signs").children;
+            const result = document.getElementById("result");
+            const typed = document.getElementById("typed");
+            const backspace = document.getElementById("backspace");
+            const c = document.getElementById("clear");
+            const copy = document.getElementById("copy");
+            const ms = document.getElementById("memorystore");
+            const history = document.getElementById("history");
+            
+            const historyL = JSON.parse(localStorage.getItem("historyL")) || [];
+            for (const child of historyL) {
+                const sum = document.createElement("summary");
+                sum.textContent = child;
+                history.appendChild(sum);
+            }
+            history.children[1].onclick = (event) => {
+                localStorage.removeItem("historyL");
+                
+                while (history.children.length > 2) {
+                    history.children[2].remove();
+                }
+            };
+            
+            for (const child of keyboardKeys) {
+                child.onclick = (event) => {
+                    typed.textContent += child.textContent;
+                }
+            };
+            
+            for (const child of keyboardSigns) {
+                child.onclick = (event) => {
+                    typed.textContent += child.textContent;
+                }
+            }
+            
+            backspace.onclick = (event) => {
+                typed.textContent = typed.textContent.slice(0, -1);
+            };
+            
+            c.onclick = (event) => {
+                typed.textContent = "";
+                result.textContent = "";
+            };
+            
+            copy.onclick = (event) => {
+                navigator.clipboard.writeText("Typed: " + typed.textContent + "\nResult: " + result.textContent);
+            };
+            
+            ms.onclick = (event) => {
+                try {
+                    eval(typed.textContent);
+                } catch (err) { return; }
+                
+                historyL.push(typed.textContent + "=" + eval(typed.textContent));
+                localStorage.setItem("historyL", JSON.stringify(historyL));
+                
+                const sum = document.createElement("summary");
+                sum.textContent = typed.textContent + "=" + eval(typed.textContent);
+                history.appendChild(sum);
+            };
+            
+            setInterval(function() {
+                try {
+                    result.textContent = eval(typed.textContent);
+                    result.style = "color: #fff;";
+                } catch (err) {
+                    result.textContent = "Error";
+                    result.style = "color: #ff0000;";
+                }
+            }, 0)
+        </script>
+    </body>
+</html>
