@@ -86,8 +86,8 @@ clockshow:
   mainIs404: no
 
 # for online JS
-online-js:
-  main: "https://ahmedac1.github.io/friendly-goggles/online-js/"
+onlinejs:
+  main: "https://ahmedac1.github.io/friendly-goggles/onlinejs/"
   modes: null
   pages: null
   rewritten: no
