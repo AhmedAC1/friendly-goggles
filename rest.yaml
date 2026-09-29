@@ -1,5 +1,5 @@
-# total of projects: 10
-# there are actually 11 but the last one is me which isn't actually a project
+# total of projects: 11
+# there are actually 12 but the last one is me which isn't actually a project
 # it's a link to this file on github.com not GitHub Pages hosting my main site
 # (github.io), yes there's a difference between those two github links.
 
@@ -80,6 +80,14 @@ calculator:
 # for ClockShow
 clockshow:
   main: "https://ahmedac1.github.io/friendly-goggles/ClockShow/"
+  modes: null
+  pages: null
+  rewritten: no
+  mainIs404: no
+
+# for online JS
+online-js:
+  main: "https://ahmedac1.github.io/friendly-goggles/online-js/"
   modes: null
   pages: null
   rewritten: no
