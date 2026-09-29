@@ -147,6 +147,15 @@ const math = {
         console.warn("Sorry this is not an JS error this is from the math module im just saying that there's not a valid vector called " + env + " so please enter 2d or 3d thank you :DDD");
     }
   },
+  flip(x) {
+    return ~x+1;
+  },
+  unall(x) {
+    return x + (x+1) - (x+2) * (x+3) / (x+4)
+  },
+  unallSome(a, b, c, d) {
+    return a + b - c * d;
+  },
   returnUnicode() {
     return {
       "add": "+",
@@ -194,6 +203,9 @@ const math = {
       "sum": "∑",
       "negative": "-",
       "vector": "𝐯",
+      "flip": "⇄",
+      "unall": "@",
+      "unallSome": "@",
       "returnUnicode": null
     };
   }
