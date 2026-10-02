@@ -118,7 +118,7 @@ syntax:
   mainIs404: yes
   searchParams:
     bg: "Defines a background for the page"
-    example: "?bg=#aaa"
+    example: "?bg=%23aaa"
 
 # for me
 me:
