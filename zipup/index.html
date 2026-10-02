@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>ZIP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <style>
+      :root {
+        --required: #ff105a;
+      }
+      body {
+        background-color: #1e1e1e;
+        color: #fff;
+      }
+      input[type=file] {
+        color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <h1>Start with a name <span style="color:var(--required);">*</span></h1>
+    <input type="text" id="q" placeholder="My awesome project">
+    <h1>Setup your files</h1>
+    <input type="text" id="w" placeholder='{"README.md": "Hello, World!"}'>
+    <hr>
+    <button id="q0">Generate</button>
+  </body>
+  <script>
+    const name = document.getElementById("q");
+    const gen = document.getElementById("q0");
+    const setup = async () => {
+      if (name.value === '' || name.value.length < 3) return;
+      const files = document.getElementById("w");
+      const zip = new JSZip();
+      
+      const json = JSON.parse(files.value);
+      for (const [name, contents] of Object.entries(json)) {
+        zip.file(name, contents);
+      }
+      const a = document.createElement("a");
+      
+      const zipQ = await zip.generateAsync({'type': 'blob'}).then((q) => URL.createObjectURL(q));
+      a.href = zipQ;
+      a.download = name.value;
+      a.click();
+      // garbage collection will automatically delete everything after this has done to save memory
+    }
+    gen.onclick = () => setup();
+  </script>
+</html>
