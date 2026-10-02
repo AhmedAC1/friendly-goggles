@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Online JS Runner</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism/themes/prism.css">
+        <style>
+            :root {
+                --green: #00ff00;
+                --cyan: #00ffff;
+            }
+            body {
+                background: linear-gradient(120deg, #ff0909, #ffff00);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                font-family: sans-serif;
+            }
+            .squishyAnimate {
+                & {
+                    font-size: 16px;
+                }
+                &:active {
+                    font-size: 8px;
+                    transition: font-size 0.5s;
+                }
+                &:not(:active) {
+                    font-size: 16px;
+                    transition: font-size 0.5s;
+                }
+            }
+            .run {
+                background-color: var(--green);
+                border: 1px solid var(--green);
+                border-radius: 4px;
+                .texta {
+                    position: relative;
+                    top: -3.5px;
+                    right: 3px;
+                    font-weight: bold;
+                }
+            }
+            .material-symbols-outlined {
+                position: relative;
+                top: 3px;
+                right: 1px;
+            }
+            .code {
+                width: 100%;
+                height: 200px;
+                border: none;
+                background: #121;
+                color: #fff;
+                font-family: monospace;
+            }
+            .output {
+                color: white;
+                white-space: pre-wrap;
+                line-height: 1.1;
+                margin: 0;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/prism/prism.js"></script>
+        <button class="squishyAnimate run" id="run"><span class="material-symbols-outlined">play_arrow</span><span class="texta">Run</span></button>
+        <button class="squishyAnimate run" id="download" style="background-color: var(--cyan); border: 1px solid var(--cyan); border-radius: 4px;"><span class="material-symbols-outlined" style="position: relative; right: 1px; left: 0.1px;">download</span><span class="texta">Download code</span></button>
+        <br><br>
+        <textarea class="code language-javascript" id="input">&lt;div&gt;Hello, World!&lt;/div&gt;</textarea>
+        <h1>Output</h1>
+        <iframe srcdoc="<div>Hello, World!</div>" id="if" width="100%" style="border: 2px solid #000; border-radius: 4px;"></iframe>
+        <script>
+            const run = document.getElementById("run");
+            const download = document.getElementById("download");
+            const output = document.getElementById("if");
+            const input = document.getElementById("input");
+            
+            run.onclick = (event) => {
+                output.textContent = "";
+                try {
+                    output.srcdoc = input.value;
+                } catch (err) {
+                    output.srcdoc = "<div>Error occured! :( " + err + "</div>";
+                }
+            };
+            
+            download.onclick = (event) => {
+                if (input.value === "") { return; }
+                const blob = new Blob([input.value], {type: "text/html;charset=utf-8"});
+                const url = URL.createObjectURL(blob);
+                
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "newfriendlygoggles-hypertextwebsite.html";
+                
+                a.click();
+                a = undefined;
+                
+                URL.revokeObjectURL(url);
+            }
+        </script>
+    </body>
+</html>
