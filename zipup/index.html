@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <title>Zipup</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
@@ -24,16 +24,19 @@
     <h1>Setup your folders too</h1>
     <input type="text" id="e" placeholder='[".github", "important"]'>
     <hr>
-    <button id="q0">Generate</button>
+    <button id="q0">Generate (download zip)</button>
+    <button id="w0">Generate (new preset)</button>
   </body>
   <script>
     const name = document.getElementById("q");
     const gen = document.getElementById("q0");
+    const prs = document.getElementById("w0");
+    const files = document.getElementById("w");
+    const folders = document.getElementById("e");
+    
     const setup = async () => {
-      if (name.value === '' || name.value.length < 3) return;
-      const files = document.getElementById("w");
-      const folders = document.getElementById("e");
       const zip = new JSZip();
+      if (name.value === '' || name.value.length < 3) return;
       
       const json = JSON.parse(files.value);
       for (const [name, contents] of Object.entries(json)) {
@@ -49,6 +52,10 @@
       a.href = zipQ;
       a.download = name.value.endsWith(".zip") ? name.value : name.value + ".zip";
       a.click();
+    }
+    prs.onclick = () => {
+      name.value = "Empty web project"
+      files.value = '{"index.html": "<!DOCTYPE HTML>\\n<html>\\n  <head></head>\\n  <body></body>\\n</html>", "themes.css": "", "script.js": ""}'
     }
     gen.onclick = () => setup();
   </script>
