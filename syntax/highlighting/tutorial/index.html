@@ -62,7 +62,7 @@ console.log(thing);</code></pre></div>
       function dodoCSS(target, prop, text) {
         if (!text) return;
         try {
-          eval(`${target}.style.${prop} = ${text}`);
+          target.style[prop] = text;
         } catch (err) {
           return;
         }
