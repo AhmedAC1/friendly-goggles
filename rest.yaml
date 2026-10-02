@@ -3,6 +3,8 @@
 # it's a link to this file on github.com not GitHub Pages hosting my main site
 # (github.io), yes there's a difference between those two github links.
 
+# ------------------------
+
 # for typing project
 typing:
   main: "https://ahmedac1.github.io/friendly-goggles/typing/"
@@ -11,12 +13,14 @@ typing:
     math: "https://ahmedac1.github.io/friendly-goggles/typing/modes/math"
     notes: "https://ahmedac1.github.io/friendly-goggles/typing/modes/notes"
   mainIs404: no
+  searchParams: null
 
 # for color project
 colors:
   main: "https://ahmedac1.github.io/friendly-goggles/rgbs/"
   modes: null
   mainIs404: no
+  searchParams: null
 
 # for modules project
 modules:
@@ -25,6 +29,7 @@ modules:
     rootdirectory: "main"
     math: "https://ahmedac1.github.io/friendly-goggles/modules/math/"
   mainIs404: yes
+  searchParams: null
 
 # for repeating project
 repeat:
@@ -33,6 +38,7 @@ repeat:
     rootdirectory: null
     opposite: "https://ahmedac1.github.io/friendly-goggles/repeat/opposite/"
   mainIs404: no
+  searchParams: null
 
 # for robux convert project
 robux:
@@ -42,6 +48,7 @@ robux:
     converter: "https://ahmedac1.github.io/friendly-goggles/robux/converter/"
     opposite: "https://ahmedac1.github.io/friendly-goggles/robux/converter-opposite/"
   mainIs404: yes
+  searchParams: null
 
 # for convert image to png
 convertionsimagepng:
@@ -50,6 +57,7 @@ convertionsimagepng:
   pages: null
   rewritten: no
   mainIs404: no
+  searchParams: null
 
 # for bootalking
 bootalking:
@@ -59,6 +67,7 @@ bootalking:
     av0: "https://ahmedac1.github.io/friendly-goggles/boo-talking/AlternateVr0/"
   rewritten: no
   mainIs404: yes
+  searchParams: null
 
 # for are you there
 areyouthere:
@@ -67,6 +76,7 @@ areyouthere:
   pages: null
   rewritten: no
   mainIs404: no
+  searchParams: null
 
 # for calculator
 calculator:
@@ -76,6 +86,7 @@ calculator:
   rewritten: yes
   rewrittenUrl: "https://ahmedac1.github.io/friendly-goggles/calculator/rewritten/"
   mainIs404: no
+  searchParams: null
 
 # for ClockShow
 clockshow:
@@ -84,6 +95,7 @@ clockshow:
   pages: null
   rewritten: no
   mainIs404: no
+  searchParams: null
 
 # for online JS
 onlinejs:
@@ -92,6 +104,7 @@ onlinejs:
   pages: null
   rewritten: no
   mainIs404: no
+  searchParams: null
 
 # for syntax
 syntax:
@@ -101,7 +114,17 @@ syntax:
     highlighting:
       main: "https://ahmedac1.github.io/friendly-goggles/syntax/highlighting/"
       latest: "https://ahmedac1.github.io/friendly-goggles/syntax/highlighting/tutorial"
+  rewritten: no
+  mainIs404: yes
+  searchParams:
+    bg: "Defines a background for the page"
+    example: "?bg=#aaa"
 
 # for me
 me:
   gitmain: "https://github.com/ahmedac1/friendly-goggles/rest.yaml"
+
+# Let me explain why before convertionsimagepngs whatever that's called is
+# doesn't have pages these before sites are old older than when we
+# implemented pages the first time to every one else, btw we're also putting
+# pages on those old ones later
