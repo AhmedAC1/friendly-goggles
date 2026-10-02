@@ -1,5 +1,5 @@
-# total of projects: 11
-# there are actually 12 but the last one is me which isn't actually a project
+# total of projects: 14
+# there are actually 15 but the last one is me which isn't actually a project
 # it's a link to this file on github.com not GitHub Pages hosting my main site
 # (github.io), yes there's a difference between those two github links.
 
@@ -118,13 +118,19 @@ syntax:
   mainIs404: yes
   searchParams:
     bg: "Defines a background for the page"
-    example: "?bg=%23aaa"
+    textcolor: "Defines a color for the page's text"
+    font: "Defines a font for the entire page's text"
+    example: "?bg=%23aaa&textcolor=black&font=serif"
+
+# for zipup (under construction: folders) (name: don't put .zip at the end)
+zipup:
+  main: "https://ahmedac1.github.io/friendly-goggles/zipup/"
+  modes: null
+  pages: null
+  rewritten: no
+  mainIs404: no
+  searchParams: null
 
 # for me
 me:
   gitmain: "https://github.com/ahmedac1/friendly-goggles/rest.yaml"
-
-# Let me explain why before convertionsimagepngs whatever that's called is
-# doesn't have pages these before sites are old older than when we
-# implemented pages the first time to every one else, btw we're also putting
-# pages on those old ones later
