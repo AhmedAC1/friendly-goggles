@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>ZIP</title>
+    <title>Zipup</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <style>
       :root {
@@ -21,6 +21,8 @@
     <input type="text" id="q" placeholder="My awesome project">
     <h1>Setup your files</h1>
     <input type="text" id="w" placeholder='{"README.md": "Hello, World!"}'>
+    <h1>Setup your folders too</h1>
+    <input type="text" id="e" placeholder='[".github", "important"]'>
     <hr>
     <button id="q0">Generate</button>
   </body>
@@ -30,6 +32,7 @@
     const setup = async () => {
       if (name.value === '' || name.value.length < 3) return;
       const files = document.getElementById("w");
+      const folders = document.getElementById("e");
       const zip = new JSZip();
       
       const json = JSON.parse(files.value);
@@ -37,12 +40,15 @@
         zip.file(name, contents);
       }
       const a = document.createElement("a");
+      const json2 = JSON.parse(folders.value);
+      for (const name of json2) {
+        zip.folder(name);
+      }
       
       const zipQ = await zip.generateAsync({'type': 'blob'}).then((q) => URL.createObjectURL(q));
       a.href = zipQ;
-      a.download = name.value;
+      a.download = name.value.endsWith(".zip") ? name.value : name.value + ".zip";
       a.click();
-      // garbage collection will automatically delete everything after this has done to save memory
     }
     gen.onclick = () => setup();
   </script>
