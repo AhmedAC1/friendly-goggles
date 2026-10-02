@@ -59,15 +59,17 @@ console.log(thing);</code></pre></div>
       const childs = document.querySelectorAll("#codeblock");
       const queries = new URLSearchParams(location.search);
 
-      function changeBg(color) {
-        if (!color) return;
+      function dodoCSS(target, prop, text) {
+        if (!text) return;
         try {
-          document.body.style.backgroundColor = color;
+          eval(`${target}.style.${prop} = ${text}`);
         } catch (err) {
           return;
         }
       }
-      changeBg(queries.get("bg"));
+      dodoCSS(document.body, 'background', queries.get("bg"));
+      dodoCSS(document.body, 'color', queries.get("textcolor"));
+      dodoCSS(document.body, 'font-family', queries.get("font"));
       async function o() {
         for (const ev of childs) {
           let copied = false;
