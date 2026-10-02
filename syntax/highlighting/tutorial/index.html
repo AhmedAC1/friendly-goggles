@@ -78,7 +78,7 @@ console.log(thing);</code></pre></div>
           button.onclick = async () => {
             if (copied) return;
             copied = true;
-            navigator.clipboard.writeText(ev.textContent);
+            navigator.clipboard.writeText(ev.querySelector("code").textContent);
             button.textContent = "check";
             await new Promise(resolve => setTimeout(resolve, 1000*3));
             button.textContent = "content_copy";
