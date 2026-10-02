@@ -47,12 +47,15 @@
     href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css"
 &gt;</code></pre></div>
     <h3>JS (put in body, important)</h3>
-    <div class="container" id="codeblock"><pre><code class="language-html">&lt;script&gt;
+    <div class="container" id="codeblock"><pre><code class="language-html">&lt;script
     src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"
-&lt;/script&gt;</code></pre></div>
+&gt;&lt;/script&gt;</code></pre></div>
     <h2>Use it:</h2>
     <div class="container" id="codeblock"><pre><code class="language-html">&lt;pre&gt;&lt;code class="language-any"&gt;code here&lt;/code&gt;&lt;/pre&gt;</code></pre></div>
-    <script>
+    <h1>Example</h1>
+    <div class="container" id="codeblock"><pre><code class="language-javascript">const thing = "Hello, World! :D";
+console.log(thing);</code></pre></div>
+    <script type="module">
       const childs = document.querySelectorAll("#codeblock");
       const queries = new URLSearchParams(location.search);
 
@@ -65,16 +68,26 @@
         }
       }
       changeBg(queries.get("bg"));
-      for (const ev of childs) {
-        const button = document.createElement("button");
+      async function o() {
+        for (const ev of childs) {
+          let copied = false;
+          const button = document.createElement("button");
         
-        button.className = "material-symbols-outlined";
-        button.textContent = "content_copy";
-        button.onclick = () => {
-          navigator.clipboard.writeText(ev.textContent);
+          button.className = "material-symbols-outlined";
+          button.textContent = "content_copy";
+          button.onclick = async () => {
+            if (copied) return;
+            copied = true;
+            navigator.clipboard.writeText(ev.textContent);
+            button.textContent = "check";
+            await new Promise(resolve => setTimeout(resolve, 1000*3));
+            button.textContent = "content_copy";
+            copied = false
+          }
+          ev.appendChild(button);
         }
-        ev.appendChild(button);
       }
+      await o();
     </script>
   </body>
 </html>
