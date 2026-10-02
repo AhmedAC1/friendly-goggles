@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Syntax highlighting tutorial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <style>
+      .container {
+        position: relative;
+        margin: 20px 0;
+        width: 100%;
+      }
+      .container button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 4px;
+        font-size: 18px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background: #e0e0e0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Syntax highlighting tutorial</h1>
+    <div><b><span class="material-symbols-outlined">info</span>NOTE: </b> This only works with elements that are uneditable.</div>
+    <h2>Import <b>Prism</b>:</h2>
+    <h3>Theme (put in head)</h3>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <div class="container" id="codeblock"><pre><code class="language-html">&lt;link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css"
+&gt;</code></pre></div>
+    <h3>JS (put in body, important)</h3>
+    <div class="container" id="codeblock"><pre><code class="language-html">&lt;script&gt;
+    src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"
+&lt;/script&gt;</code></pre></div>
+    <h2>Use it:</h2>
+    <div class="container" id="codeblock"><pre><code class="language-html">&lt;pre&gt;&lt;code class="language-any"&gt;code here&lt;/code&gt;&lt;/pre&gt;</code></pre></div>
+    <script>
+      const childs = document.querySelectorAll("#codeblock");
+      
+      for (const ev of childs) {
+        const button = document.createElement("button");
+        
+        button.className = "material-symbols-outlined";
+        button.textContent = "content_copy";
+        button.onclick = () => {
+          navigator.clipboard.writeText(ev.textContent);
+        }
+        ev.appendChild(button);
+      }
+    </script>
+  </body>
+</html>
