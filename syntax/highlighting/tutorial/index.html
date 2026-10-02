@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <style>
       body {
+        background: #1e1e1e;
         font-family: system-ui, roboto, sans-serif;
+        color: #fff;
       }
       /* ----------------------- */
       .container {
@@ -52,7 +54,17 @@
     <div class="container" id="codeblock"><pre><code class="language-html">&lt;pre&gt;&lt;code class="language-any"&gt;code here&lt;/code&gt;&lt;/pre&gt;</code></pre></div>
     <script>
       const childs = document.querySelectorAll("#codeblock");
-      
+      const queries = new URLSearchParams(location.search);
+
+      function changeBg(color) {
+        if (!color) return;
+        try {
+          document.body.style.backgroundColor = color;
+        } catch (err) {
+          return;
+        }
+      }
+      changeBg(queries.get("bg"));
       for (const ev of childs) {
         const button = document.createElement("button");
         
