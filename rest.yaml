@@ -93,6 +93,15 @@ onlinejs:
   rewritten: no
   mainIs404: no
 
+# for syntax
+syntax:
+  main: "https://ahmedac1.github.io/friendly-goggles/syntax/"
+  modes: null
+  pages:
+    highlighting:
+      main: "https://ahmedac1.github.io/friendly-goggles/syntax/highlighting/"
+      latest: "https://ahmedac1.github.io/friendly-goggles/syntax/highlighting/tutorial"
+
 # for me
 me:
-  main: "https://github.com/ahmedac1/friendly-goggles/rest.yaml"
+  gitmain: "https://github.com/ahmedac1/friendly-goggles/rest.yaml"
