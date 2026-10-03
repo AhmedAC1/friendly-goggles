@@ -156,6 +156,33 @@ const math = {
   unallSome(a, b, c, d) {
     return a + b - c * d;
   },
+  cAbout(degree) {
+    if (degree < 10) {
+      return "Cold";
+    } else if (degree > 30) {
+      return "Hot";
+    } else {
+      return "Warm";
+    }
+  },
+  fAbout(degree) {
+    if (degree < 50) {
+      return "Cold";
+    } else if (degree > 85) {
+      return "Hot";
+    } else {
+      return "Warm";
+    }
+  },
+  kAbout(degree) {
+    if (degree < 283) {
+      return "Cold";
+    } else if (degree > 303) {
+      return "Hot";
+    } else {
+      return "Warm";
+    }
+  },
   returnUnicode() {
     return {
       "add": "+",
@@ -206,6 +233,9 @@ const math = {
       "flip": "⇄",
       "unall": "@",
       "unallSome": "@",
+      "cAbout": "°C",
+      "fAbout": "°F",
+      "kAbout": "K",
       "returnUnicode": null
     };
   }
