@@ -27,6 +27,14 @@
             <button>*</button>
             <button>/</button>
             <button>**</button>
+            <button>(</button>
+            <button>)</button>
+            <button>.</button>
+            <button>2**</button>
+            <button>10**</button>
+            <button>%</button>
+            <button>^</button>
+            <button>Math.PI</button>
         </span>
         <br><br>
         <span id="keyboard">
@@ -43,7 +51,10 @@
             <button>9</button>
             <br>
             <button style="padding: 0px 34.5px;">0</button>
+            <br>
         </span>
+        <button style="padding: 0px 34.5px;" id="equals">=</button>
+        <br><br>
         <br><br>
         <button id="backspace" class="danger">⌫</button>
         <button id="clear" class="danger">C</button>
@@ -60,6 +71,8 @@
             const copy = document.getElementById("copy");
             const ms = document.getElementById("memorystore");
             const history = document.getElementById("history");
+            let truncated = false;
+            let answered = false;
             
             const historyL = JSON.parse(localStorage.getItem("historyL")) || [];
             for (const child of historyL) {
@@ -77,6 +90,11 @@
             
             for (const child of keyboardKeys) {
                 child.onclick = (event) => {
+                    if (truncated) {
+                        typed.textContent = "";
+                        result.textContent = "";
+                        truncated = false;
+                    }
                     typed.textContent += child.textContent;
                 }
             };
@@ -94,6 +112,8 @@
             c.onclick = (event) => {
                 typed.textContent = "";
                 result.textContent = "";
+                truncated = false;
+                answered = false;
             };
             
             copy.onclick = (event) => {
@@ -113,15 +133,29 @@
                 history.appendChild(sum);
             };
             
-            setInterval(function() {
+            equals.onclick = (event) => {
                 try {
                     result.textContent = eval(typed.textContent);
                     result.style = "color: #fff;";
+                    answered = true;
                 } catch (err) {
                     result.textContent = "Error";
                     result.style = "color: #ff0000;";
+                    answered = false;
                 }
-            }, 0)
+            }
+        </script>
+        <h1>Options</h1>
+        <button id="truncate">Truncate (removes floats)</button>
+        <script>
+            const truncate = document.getElementById("truncate");
+            
+            truncate.onclick = (event) => {
+                if (truncated || typed.textContent === "" || !answered) return;
+                truncated = true;
+                typed.textContent = "[truncated: " + typed.textContent + "]"
+                result.textContent = String(Math.trunc(result.textContent));
+            };
         </script>
     </body>
 </html>
