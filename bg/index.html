@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu">
+    <style>
+      body {
+        background-size: cover;
+        min-height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "Ubuntu", sans-serif;
+        margin: 0;
+      }
+      
+      .upper {
+        position: relative;
+        bottom: 15px;
+        left: 0;
+      }
+      
+      input {
+        position: fixed;
+        bottom: 0;
+        left: 1px;
+        color: transparent;
+        &::file-selector-button {
+          background-color: #aaa;
+          border: 2px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+      .invert {
+        position: fixed;
+        bottom: 0;
+        background-color: #aaa;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        left: 91px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="meeditables">
+      <h1 contenteditable>Update your wallpaper</h1>
+      <h6 contenteditable class="upper">(and add text)</h6>
+    </div>
+    <input type="file" accept="image/*" id="upload">
+    <button class="invert" id="inv">Inv</button>
+    <script>
+      const input = document.getElementById("upload");
+      const inv = document.getElementById("inv");
+      const mee = document.getElementById("meeditables");
+      if (localStorage.getItem("savedImage") || localStorage.getItem("title") || localStorage.getItem("subtitle")) {
+        document.body.style.backgroundImage = localStorage.getItem("savedImage") ?? "";
+        mee.children[0].textContent = localStorage.getItem("title") ?? "Update your wallpaper";
+        mee.children[1].textContent = localStorage.getItem("subtitle") ?? "(and add text)";
+      }
+      input.addEventListener("change", () => {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const base64img = e.target.result;
+          localStorage.setItem("savedImage", 'url(' + base64img + ')');
+          document.body.style.backgroundImage = 'url(' + base64img + ')';
+        }
+        reader.readAsDataURL(file);
+      });
+      for (const me of mee.children) {
+        me.addEventListener("input", () => {
+          localStorage.setItem("title", mee.children[0].textContent);
+          localStorage.setItem("subtitle", mee.children[1]. textContent);
+        });
+      }
+      inv.addEventListener("click", () => {
+        for (const me of mee.children) {
+          me.style.color = '#ddd'
+          me.style.transform = 'translateY(320px)';
+        }
+      });
+    </script>
+  </body>
+</html>
