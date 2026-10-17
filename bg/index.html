@@ -23,13 +23,13 @@
         bottom: 0;
         left: 1px;
         color: transparent;
-        &::file-selector-button {
-          background-color: #aaa;
-          border: 2px solid #ccc;
-          border-radius: 4px;
-        }
       }
-      .invert {
+      input::file-selector-button {
+        background-color: #aaa;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      .seeclearly {
         position: fixed;
         bottom: 0;
         background-color: #aaa;
@@ -45,7 +45,7 @@
       <h6 contenteditable class="upper">(and add text)</h6>
     </div>
     <input type="file" accept="image/*" id="upload">
-    <button class="invert" id="inv">Inv</button>
+    <button class="seeclearly" id="inv">Inv/See clearly</button>
     <script>
       const input = document.getElementById("upload");
       const inv = document.getElementById("inv");
