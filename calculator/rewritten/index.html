@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta name="viewport" contents="width=device-width, initial-scale=1.0">
         <style>
             button {
                 background: rgb(190, 190, 190);
@@ -10,6 +11,11 @@
                 background-color: rgb(190, 0, 0);
                 color: #fff;
                 border: 3px solid #aa0000;
+            }
+            input {
+                background-color: rgb(190, 190, 190);
+                border: 3px solid #aaa;
+                border-radius: 4px;
             }
         </style>
     </head>
@@ -33,8 +39,21 @@
             <button>2**</button>
             <button>10**</button>
             <button>%</button>
-            <button>^</button>
-            <button>Math.PI</button>
+            <button>Ans</button>
+            <button>e</button>
+            <button>0b</button>
+        </span>
+        <br hidden id="br">
+        <span id="mode" hidden>
+            <button>sin(</button>
+            <button>cos(</button>
+            <button>log(</button>
+            <button>tan(</button>
+            <button>sqrt(</button>
+            <button>abs(</button>
+            <button>E</button>
+            <button>PI</button>
+            <button>random()</button>
         </span>
         <br><br>
         <span id="keyboard">
@@ -58,9 +77,11 @@
         <br><br>
         <button id="backspace" class="danger">⌫</button>
         <button id="clear" class="danger">C</button>
+        <button id="allClear" class="danger">AC</button>
         <button id="memorystore">MS</button>
         <br><br>
         <button style="font-size: 22px; color: #fff;" id="copy">Copy all</button>
+        <button style="font-size: 22px; color: #fff;" id="paste">Paste</button>
         <script>
             const keyboardKeys = document.getElementById("keyboard").children;
             const keyboardSigns = document.getElementById("signs").children;
@@ -73,6 +94,14 @@
             const history = document.getElementById("history");
             let truncated = false;
             let answered = false;
+            let Ans = 0;
+            const allClear = document.getElementById("allClear");
+            
+            const queries = new URLSearchParams(location.search);
+
+            if (queries.get("calc")) {
+              typed.textContent = queries.get("calc");
+            }
             
             const historyL = JSON.parse(localStorage.getItem("historyL")) || [];
             for (const child of historyL) {
@@ -119,6 +148,9 @@
             copy.onclick = (event) => {
                 navigator.clipboard.writeText("Typed: " + typed.textContent + "\nResult: " + result.textContent);
             };
+            paste.onclick = async (event) => {
+                typed.textContent += await navigator.clipboard.readText();
+            }
             
             ms.onclick = (event) => {
                 try {
@@ -131,31 +163,136 @@
                 const sum = document.createElement("summary");
                 sum.textContent = typed.textContent + "=" + eval(typed.textContent);
                 history.appendChild(sum);
+                sum.onclick = (event) => {
+                  typed.textContent += sum.textContent.split("=")[0];
+                }
             };
             
             equals.onclick = (event) => {
+                if (typed.textContent === "") return;
                 try {
+                    if (!isFinite(eval(typed.textContent))) {
+                      result.textContent = "Impossible or non-finite";
+                      result.style = "color: #ff0000;";
+                      answered = false;
+                      return;
+                    }
                     result.textContent = eval(typed.textContent);
                     result.style = "color: #fff;";
                     answered = true;
-                } catch (err) {
+                    Ans = eval(result.textContent);
+                } catch {
                     result.textContent = "Error";
                     result.style = "color: #ff0000;";
                     answered = false;
                 }
             }
+            
+            allClear.onclick = (event) => {
+                typed.textContent = "";
+                Ans = 0;
+                localStorage.removeItem("historyL");
+                while (history.children.length > 2) {
+                    history.children[2].remove();
+                }
+                result.textContent = "";
+            }
         </script>
         <h1>Options</h1>
         <button id="truncate">Truncate (removes floats)</button>
+        <button id="sm">Scientific mode</button>
         <script>
             const truncate = document.getElementById("truncate");
+            const sm = document.getElementById("sm");
+            const sms = [document.getElementById("mode"), document.getElementById("br")];
             
             truncate.onclick = (event) => {
                 if (truncated || typed.textContent === "" || !answered) return;
                 truncated = true;
-                typed.textContent = "[truncated: " + typed.textContent + "]"
+                typed.textContent = "[truncated: " + typed.textContent + "]";
                 result.textContent = String(Math.trunc(result.textContent));
             };
+            sm.onclick = (event) => {
+              if (sms.every(elmnt => elmnt.hidden)) {
+                sms.forEach(elmnt => elmnt.hidden = false);
+              } else {
+                sms.forEach(elmnt => elmnt.hidden = true);
+              }
+            }
+            for (const func of sms[0].children) {
+              func.onclick = (event) => {
+                typed.textContent += "Math." + func.textContent;
+              }
+            }
         </script>
+        <script>
+          window.addEventListener("keydown", (event) => {
+            if (event.key === 'Enter') {
+              equals.click();
+            } else if ([0,1,2,3,4,5,6,7,8,9].includes(Number(event.key))) {
+              typed.textContent += event.key;
+            } else if (['e', 'E'].includes(event.key)) {
+              typed.textContent += 'Math.' + event.key;
+            } else if (['+','-','*','/','.','(',')'].includes(event.key)) {
+              typed.textContent += event.key;
+            } else if (event.key === 'Backspace') {
+              typed.textContent = typed.textContent.slice(0, -1);
+            } else if (['C','Escape'].includes(event.key)) {
+              typed.textContent = '';
+              result.textContent = '';
+              truncated = false;
+              answered = false;
+            } else if (event.key === 't') {
+              if (truncated || typed.textContent === '' || !answered) return;
+              truncated = true;
+              typed.textContent = '[truncated: ' + typed.textContent + ']';
+              result.textContent = String(Math.trunc(result.textContent));
+            }
+          });
+        </script>
+        <h1>Factorial</h1>
+        <input type="text" placeholder="Type your factorial here..." id="factorial">
+        <div id="resultdot">Result: none</div>
+        <script>
+          const factorial = document.getElementById('factorial');
+          const resultDot = document.getElementById('resultdot');
+          
+          function f(n) {
+            try {
+              let nu = 1;
+              for (let i = 1; i <= eval(n); i++) {
+                nu *= i;
+              }
+              return nu;
+            } catch {
+              const the = new Error('Error');
+              throw the;
+            }
+          }
+          factorial.oninput = (event) => {
+            try {
+              if (factorial.value === '') { resultDot.textContent = 'Result: none'; resultDot.style.color = '#fff'; return; }
+              resultDot.textContent = 'Result: ' + f(factorial.value);
+              resultDot.style.color = '#fff';
+            } catch (err) {
+              resultDot.textContent = String(err).split(':')[1];
+              resultDot.style.color = 'red';
+            }
+          }
+        </script>
+        <h1>Updates</h1>
+        <h2>Made</h2>
+        <ol>
+          <li>Clipboard pasting</li>
+          <li>All Clear button</li>
+        </ol>
+        <h2>Under construction</h2>
+        <ol>
+          <li>Nothing</li>
+        </ol>
+        <h2>Removed</h2>
+        <ol>
+          <li>Nothing</li>
+        </ol>
     </body>
 </html>
