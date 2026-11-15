@@ -1,4 +1,8 @@
-const math = {
+// This file has been for quite a lot.
+// We are now moving the file to Orgtake/Tools.
+// Websites using this module may break.
+
+/*const math = {
   add(a, b) {
     return a + b;
   },
@@ -241,4 +245,4 @@ const math = {
   }
 };
 
-export { math };
+export { math };*/
