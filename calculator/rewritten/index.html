@@ -20,6 +20,23 @@
         </style>
     </head>
     <body style="background: #000; color: #ffffff; font-family: sans-serif;">
+        <script>
+          class HTMLStElement extends HTMLElement {
+            constructor() {
+              super();
+            }
+            connectedCallback() {
+              const shadowRoot = this.attachShadow({mode: "open"});
+              shadowRoot.innerHTML = `<style>
+                .subtitle {
+                  color: rgb(150, 150, 150);
+                  font-size: 13px;
+                }
+                </style><div class='subtitle'>Explaination: <slot></slot></div>`;
+            }
+          }
+          customElements.define("update-st", HTMLStElement);
+        </script>
         <details id="history">
             <summary>History</summary>
             <button>Clear history</button>
@@ -41,7 +58,13 @@
             <button>%</button>
             <button>Ans</button>
             <button>e</button>
-            <button>0b</button>
+            <br>
+            <button>f(</button>
+            <button>x</button>
+            <button>y</button>
+            <button>, </button>
+            <button> || </button>
+            <button> ?? </button>
         </span>
         <br hidden id="br">
         <span id="mode" hidden>
@@ -50,6 +73,7 @@
             <button>log(</button>
             <button>tan(</button>
             <button>sqrt(</button>
+            <button>cbrt(</button>
             <button>abs(</button>
             <button>E</button>
             <button>PI</button>
@@ -96,6 +120,47 @@
             let answered = false;
             let Ans = 0;
             const allClear = document.getElementById("allClear");
+            const everything = [
+              "+",
+              "-",
+              "*",
+              "/",
+              "**",
+              "(",
+              ")",
+              ".",
+              "2**",
+              "10**",
+              "%",
+              "Ans",
+              "e",
+              "f",
+              "x",
+              "y",
+              ", ",
+              " || ",
+              " ?? ",
+              "Math.sin(",
+              "Math.cos(",
+              "Math.log(",
+              "Math.tan(",
+              "Math.sqrt(",
+              "Math.cbrt(",
+              "Math.abs(",
+              "Math.E",
+              "Math.PI",
+              "Math.random()",
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ]
             
             const queries = new URLSearchParams(location.search);
 
@@ -135,7 +200,7 @@
             }
             
             backspace.onclick = (event) => {
-                typed.textContent = typed.textContent.slice(0, -1);
+                typed.textContent = typed.textContent.slice(0, typed.textContent.length - 1);
             };
             
             c.onclick = (event) => {
@@ -257,7 +322,7 @@
           const factorial = document.getElementById('factorial');
           const resultDot = document.getElementById('resultdot');
           
-          function f(n) {
+          function fact(n) {
             try {
               let nu = 1;
               for (let i = 1; i <= eval(n); i++) {
@@ -272,7 +337,7 @@
           factorial.oninput = (event) => {
             try {
               if (factorial.value === '') { resultDot.textContent = 'Result: none'; resultDot.style.color = '#fff'; return; }
-              resultDot.textContent = 'Result: ' + f(factorial.value);
+              resultDot.textContent = 'Result: ' + fact(factorial.value);
               resultDot.style.color = '#fff';
             } catch (err) {
               resultDot.textContent = String(err).split(':')[1];
@@ -280,11 +345,29 @@
             }
           }
         </script>
+        <h1>Functions</h1>
+        <button id="funcInsert">Insert expression from input (at the top)</button>
+        <script>
+          const funcInsert = document.getElementById('funcInsert');
+          
+          function f() {}
+          funcInsert.onclick = (event) => {
+            const expression = typed.textContent;
+            c.click();
+            f = function(x, y) {
+              return eval(expression);
+            }
+          }
+        </script>
         <h1>Updates</h1>
         <h2>Made</h2>
         <ol>
-          <li>Clipboard pasting</li>
-          <li>All Clear button</li>
+          <li>Update subtitles</li>
+          <update-st>Like this</update-st>
+          <li>Functions</li>
+          <update-st>It's defined as f(x, y)</update-st>
+          <li>Alternative backspace</li>
+          <update-st>Changed backspace to use length - 1 instead of slicing</update-st>
         </ol>
         <h2>Under construction</h2>
         <ol>
