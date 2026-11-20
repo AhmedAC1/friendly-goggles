@@ -1,6 +1,6 @@
 <html>
     <head>
-        <meta name="viewport" contents="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             button {
                 background: rgb(190, 190, 190);
@@ -16,6 +16,10 @@
                 background-color: rgb(190, 190, 190);
                 border: 3px solid #aaa;
                 border-radius: 4px;
+            }
+            .large {
+              font-size: 22px;
+              color: #fff;
             }
         </style>
     </head>
@@ -104,8 +108,9 @@
         <button id="allClear" class="danger">AC</button>
         <button id="memorystore">MS</button>
         <br><br>
-        <button style="font-size: 22px; color: #fff;" id="copy">Copy all</button>
-        <button style="font-size: 22px; color: #fff;" id="paste">Paste</button>
+        <button class="large" id="copy">Copy all</button>
+        <button class="large" id="shareLink">Share link</button>
+        <button class="large" id="paste">Paste</button>
         <script>
             const keyboardKeys = document.getElementById("keyboard").children;
             const keyboardSigns = document.getElementById("signs").children;
@@ -116,10 +121,10 @@
             const copy = document.getElementById("copy");
             const ms = document.getElementById("memorystore");
             const history = document.getElementById("history");
-            let truncated = false;
             let answered = false;
             let Ans = 0;
             const allClear = document.getElementById("allClear");
+            const shareLink = document.getElementById("shareLink");
             const everything = [
               "+",
               "-",
@@ -184,11 +189,6 @@
             
             for (const child of keyboardKeys) {
                 child.onclick = (event) => {
-                    if (truncated) {
-                        typed.textContent = "";
-                        result.textContent = "";
-                        truncated = false;
-                    }
                     typed.textContent += child.textContent;
                 }
             };
@@ -206,7 +206,6 @@
             c.onclick = (event) => {
                 typed.textContent = "";
                 result.textContent = "";
-                truncated = false;
                 answered = false;
             };
             
@@ -234,18 +233,25 @@
             };
             
             equals.onclick = (event) => {
+                const res = typed.textContent.replace(/0\s*\/\s*0/, "0");
                 if (typed.textContent === "") return;
                 try {
-                    if (!isFinite(eval(typed.textContent))) {
-                      result.textContent = "Impossible or non-finite";
-                      result.style = "color: #ff0000;";
+                    if (typed.textContent.includes("x") || typed.textContent.includes("y")) {
+                      result.textContent = "Use a function instead";
+                      result.style.color = "#ccc";
                       answered = false;
                       return;
                     }
-                    result.textContent = eval(typed.textContent);
+                    if (!isFinite(eval(res))) {
+                      result.textContent = "Impossible or non-finite";
+                      result.style.color = "#ff0000";
+                      answered = false;
+                      return;
+                    }
+                    result.textContent = eval(res);
                     result.style = "color: #fff;";
                     answered = true;
-                    Ans = eval(result.textContent);
+                    Ans = eval(res);
                 } catch {
                     result.textContent = "Error";
                     result.style = "color: #ff0000;";
@@ -262,6 +268,24 @@
                 }
                 result.textContent = "";
             }
+            
+            if (navigator.share) {
+              shareLink.onclick = async (event) => {
+                try {
+                  const baseUrl = location.origin + location.pathname;
+                  const expr = typed.textContent.trim();
+                  const shareUrl = expr ? `${baseUrl}?calc=${encodeURIComponent(expr)}` : baseUrl;
+
+                  await navigator.share({
+                    title: "Check out my expression!",
+                    text: `${expr} = ${result.textContent}`,
+                    url: shareUrl
+                  });
+                } catch {
+                  console.error("Share cancelled!");
+                }
+              }
+            }
         </script>
         <h1>Options</h1>
         <button id="truncate">Truncate (removes floats)</button>
@@ -272,9 +296,8 @@
             const sms = [document.getElementById("mode"), document.getElementById("br")];
             
             truncate.onclick = (event) => {
-                if (truncated || typed.textContent === "" || !answered) return;
-                truncated = true;
-                typed.textContent = "[truncated: " + typed.textContent + "]";
+                if (typed.textContent === "" || !answered) return;
+                typed.textContent = "Math.trunc(" + typed.textContent + ")";
                 result.textContent = String(Math.trunc(result.textContent));
             };
             sm.onclick = (event) => {
@@ -290,33 +313,8 @@
               }
             }
         </script>
-        <script>
-          window.addEventListener("keydown", (event) => {
-            if (event.key === 'Enter') {
-              equals.click();
-            } else if ([0,1,2,3,4,5,6,7,8,9].includes(Number(event.key))) {
-              typed.textContent += event.key;
-            } else if (['e', 'E'].includes(event.key)) {
-              typed.textContent += 'Math.' + event.key;
-            } else if (['+','-','*','/','.','(',')'].includes(event.key)) {
-              typed.textContent += event.key;
-            } else if (event.key === 'Backspace') {
-              typed.textContent = typed.textContent.slice(0, -1);
-            } else if (['C','Escape'].includes(event.key)) {
-              typed.textContent = '';
-              result.textContent = '';
-              truncated = false;
-              answered = false;
-            } else if (event.key === 't') {
-              if (truncated || typed.textContent === '' || !answered) return;
-              truncated = true;
-              typed.textContent = '[truncated: ' + typed.textContent + ']';
-              result.textContent = String(Math.trunc(result.textContent));
-            }
-          });
-        </script>
         <h1>Factorial</h1>
-        <input type="text" placeholder="Type your factorial here..." id="factorial">
+        <input type="text" placeholder="Put a number that's ≤170..." id="factorial">
         <div id="resultdot">Result: none</div>
         <script>
           const factorial = document.getElementById('factorial');
@@ -368,6 +366,14 @@
           <update-st>It's defined as f(x, y)</update-st>
           <li>Alternative backspace</li>
           <update-st>Changed backspace to use length - 1 instead of slicing</update-st>
+          <li>IMPORTANT: Changed 0/0 to become 0 instead of erroring</li>
+          <update-st>Because 0×0=0</update-st>
+          <li>New and modified keybinds</li>
+          <li>New placeholder for factorial input</li>
+          <li>New share link button</li>
+          <update-st>Click Share link near the Copy all button</update-st>
+          <li>New class for large buttons</li>
+          <update-st>Used for the clipboard and sharing buttons</update-st>
         </ol>
         <h2>Under construction</h2>
         <ol>
@@ -377,5 +383,32 @@
         <ol>
           <li>Nothing</li>
         </ol>
+        <script>
+          window.addEventListener("keydown", (event) => {
+            if (document.activeElement.tagName === 'INPUT') return;
+            if (event.key === 'Enter') {
+              equals.click();
+            } else if ([0,1,2,3,4,5,6,7,8,9].includes(Number(event.key))) {
+              typed.textContent += event.key;
+            } else if (event.key === 'E') {
+              typed.textContent += 'Math.E';
+            } else if (['+','-','*','/','.','(',')'].includes(event.key)) {
+              typed.textContent += event.key;
+            } else if (event.key === 'Backspace') {
+              typed.textContent = typed.textContent.slice(0, -1);
+            } else if (['C','Escape'].includes(event.key)) {
+              typed.textContent = '';
+              result.textContent = '';
+              answered = false;
+            } else if (event.key === 't') {
+              if (typed.textContent === '' || !answered) return;
+              truncate.click();
+            } else if (event.key === 's') {
+              sm.click();
+            } else if (event.key === 'f') {
+              funcInsert.click();
+            }
+          });
+        </script>
     </body>
 </html>
