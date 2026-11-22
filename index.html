@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirector</title>
+  </head>
+  <body style="background-color: #ccc;">
+      <div>
+        <span style="color: #ffff00; font-size: large;">CAREFUL!</span>
+        <span>This is a tool for friendly-goggles, not a utility :O</span>
+      </div>
+      <input type="text" id="input">
+      <button type="submit" id="go">Go!</button>
+      <script>
+        const input = document.getElementById("input");
+        const goButton = document.getElementById("go");
+        
+        goButton.addEventListener("click", () => {
+          window.open(
+            "https://ahmedac1.github.io/friendly-goggles/"
+            + encodeURIComponent(input.value),
+            "_blank"
+          );
+        });
+      </script>
+  </body>
+</html>
