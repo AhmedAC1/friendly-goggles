@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>AC's Math Reps</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="root">AC's Math Reps</h1>
+        <h2 id="divrep">Splitting division</h2>
+        \[
+        \frac{244}{2}=\begin{bmatrix}
+        \frac{200}{2}=100\\
+        \frac{40}{2}=20\\
+        \frac{4}{2}=2
+        \end{bmatrix}\to100+20+2=122
+        \]
+        <h2 id="multirep">Splitting multiplication</h2>
+        \[
+        563\times2=\begin{bmatrix}
+        500\times2=1000\\
+        60\times2=120\\
+        3\times2=6
+        \end{bmatrix}\to1000+120+6=1126
+        \]
+        <h2 id="norms">Norms (Euclidean norm for vectors)</h2>
+        \[
+        \sqrt{5^2 + 6^2}
+        \]
+        <h2 id="excludes">Excluded numbers</h2>
+        \[
+        6 = \cancel{6}\to5
+        \]
+        \[
+        65 = \cancel{65}\to64
+        \]
+        \[
+        10 = \cancel{10}\to9
+        \]
+        \[
+        5 \text{ to } 10 = \cancel{5 \text{ to } 10}\to5 \text{ to } 9
+        \]
+        <h2 id="powers">Powers</h2>
+        \[
+        10^6=10\times10\times10\times10\times10\times10
+        \]
+        <h3 id="logs">Logarithms (reverse)</h3>
+        \[
+        \log_{10}(1,000,000) = 6
+        \]
+        <h2 id="sumprodfactorials">Summation and products/factorials</h2>
+        \[
+        \sum^5_{i=1}i = 1+2+3+4+5
+        \]
+        \[
+        \prod^5_{i=1}i=5\times4\times3\times2\times1
+        \]
+        \[
+        5! = 1\times2\times3\times4\times5
+        \]
+        <h2 id="ints">Integrals (for constant bounds)</h2>
+        \[
+        \int^5_0x\,dx=\frac{5^2}{2}-\frac{0^2}{2}=12.5
+        \]
+        <h2 id="delta">Delta</h2>
+        \[
+        \Delta x = x_\text{final} - x_\text{initial}
+        \]
+        <h3>Example</h3>
+        \[
+        r = \text{rating of show}
+        \]
+        \[
+        \Delta r = 9-8 = 1
+        \]
+        <h2 id="recpips">Reciprocals</h2>
+        \[
+        \frac{3}{4}\to\frac{4}{3}
+        \]
+        \[
+        \frac{3}{4}\times\frac{4}{3}=1 \text{ (always for non-zeros)}
+        \]
+        <h2 id="limits">Limits</h2>
+        \[
+        \lim_{x\to10}5x = 5(10)\to50
+        \]
+        \[
+        \lim_{i\to5}10 \times i=10\times5\to50
+        \]
+        <h2 id="imaginarynums">Imaginary numbers</h2>
+        \[
+        i^1=i
+        \]\[
+        i^2=-1
+        \]\[
+        i^3=-i
+        \]\[
+        i^4=1
+        \]\[
+        \text{repeats every } 4 \text{ powers}
+        \]
+        <h2 id="numsets">Number sets</h2>
+        \[
+        \large\begin{matrix}
+        \mathbb{Z} = \{\ldots, -1, 0, 1, \ldots\}\\
+        \mathbb{R} = \{-3,0,\frac{1}{2},2,\sqrt{2},\pi,\ldots\}\\
+        \mathbb{N} = \{1, 2, \ldots\}\\
+        \mathbb{Q} = \{\frac{1}{2},3,-4\}
+        \end{matrix}
+        \]
+        \[
+        \begin{matrix}
+        \forall x,\qquad x\in\mathbb{R}\\
+        \forall x\in\mathbb{Z},\qquad x\times1=x
+        \end{matrix}
+        \]
+        <h2 id="lplus">Plus</h2>
+        \[
+        5+1=(5\uparrow)\to6
+        \]
+        \[
+        5+2=(5\uparrow\uparrow)\to7
+        \]
+        <h2 id="lsubt">Subtraction</h2>
+        \[
+        5-1=(5\downarrow)\to4
+        \]
+        \[
+        5-2=(5\downarrow\downarrow)\to3
+        \]
+        <h2 id="lmul">Multiplication</h2>
+        \[
+        5\times1=5
+        \]
+        \[
+        5\times2=5+5
+        \]
+        <h2 id="ldiv">Division</h2>
+        \[
+        \frac{5}{1}=(1\times\underline{5})=5
+        \]
+        \[
+        \frac{5}{2}=(2\times\underline{2.5}=5)=2.5
+        \]
+        <h2 id="poweralt">Powers alternative: Knuth's up-arrow notation</h2>
+        \[
+        2\!\uparrow\!4=2^4=16
+        \]
+        \[
+        3\!\uparrow\!\uparrow\!2=3^3=27
+        \]
+        \[
+        3\!\uparrow\!\uparrow\!\uparrow\!4=3\!\uparrow\!\uparrow\!(3\!\uparrow\!\uparrow\!3)
+        \]
+        <hr id="end">
+        \[
+        \textbf{Styled by }\KaTeX
+        \]
+        <script>
+            const params = new URLSearchParams(location.search);
+            const selector = params.get("selector");
+            if (selector) {
+                document.querySelector(selector)?.scrollIntoView();
+            }
+        </script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+    </body>
+</html>
